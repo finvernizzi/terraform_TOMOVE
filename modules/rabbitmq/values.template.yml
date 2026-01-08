@@ -1,0 +1,23 @@
+# Default values for rabbitMQ
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+environment: ${environment}
+namespace: ${namespace}
+domain: ${domain}
+
+# [See](https://hub.docker.com/_/rabbitmq/)
+# [See](https://www.rabbitmq.com/memory.html)
+memoryAlert: 0.4
+
+image:
+  repository: rabbitmq
+  tag: ${tag}
+  pullPolicy: IfNotPresent
+
+portName: rabbitmetrics
+serviceMonitorRelease: ${service_monitor_release}
+default_user: ${default-user}
+default_pass: ${default-password}

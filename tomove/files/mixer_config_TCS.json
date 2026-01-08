@@ -1,0 +1,22 @@
+{
+    "inputs": [
+      {
+        "domain": "tcs",
+        "queue_vhost": "quandopasso"
+      },
+      {
+        "domain": "quandopasso",
+        "queue_vhost": "quandopasso"
+      }],
+    "targets":[
+      {
+        "mixerOptions":{
+          "mode": "BASE",
+          "filters": [],
+          "modifiers": [],
+          "domain": "tcs",
+          "allowedSourceDomains": ["tcs", "quandopasso"]
+        }
+      }
+    ]
+  }

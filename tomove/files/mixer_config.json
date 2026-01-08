@@ -1,0 +1,32 @@
+{
+    "inputs": [
+      {
+        "domain": "quandopasso",
+        "queue_vhost": "quandopasso"
+      },
+      {
+        "domain": "aspi",
+        "queue_vhost": "aspi"
+      }
+    ],
+    "targets":[
+      {
+        "mixerOptions":{
+          "mode": "BASE",
+          "filters": [],
+          "modifiers": [],
+          "domain": "quandopasso",
+          "allowedSourceDomains": ["quandopasso"]
+        }
+      },
+      {
+        "mixerOptions":{
+          "mode": "BASE",
+          "filters": [],
+          "modifiers": [],
+          "domain": "aspi",
+          "allowedSourceDomains": ["aspi"]
+        }
+      }
+    ]
+  }

@@ -1,0 +1,38 @@
+# Default values for wellknown-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+node:
+  environment: ${environment}
+
+namespace: ${namespace}
+
+replicaCount: ${replicacount}
+
+environment: ${environment}
+
+rollingUpdate:
+      maxUnavailable: 50%
+      maxSurge: 50%
+
+image:
+  repository: ${repository}
+  tag: ${tag}
+  imagePullPolicy: ${pullPolicy}
+  pullSecretName: ${azcr_pullimage_secret_name}
+
+api:
+  version: ${api_version}
+
+log: true
+debug: ''
+
+# Look here for certificates
+certificatesPVC: certificates-pvc
+persistentVolume: certificates-pv
+store_path: "/certificates"
+
+rate_limit: ${rate_limit}
+portName: wellknownapiport
+# The release for Prometheus to find the ServiceMonitor
+serviceMonitorRelease: ${service_monitor_release}

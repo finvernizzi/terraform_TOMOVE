@@ -1,0 +1,51 @@
+{
+  "quandopasso":[
+  {
+      "id":1,
+      "name":"BSC",
+      "description":"BSC - test"
+  },
+  {
+      "id":2,
+      "name":"JOINT",
+      "description":"JOINT - test"
+  },
+  {
+      "id":3,
+      "name":"NJ",
+      "description":"NJ - test"
+  },
+  {
+      "id":4,
+      "name":"Altri",
+      "description":"Altri - test"
+  },
+  {
+      "id":1001,
+      "name":"QP_SPEED_CAM",
+      "description":"Electronic Traffic Control system"
+  }
+  ],
+  "aspi":[
+    {
+      "id":1,
+      "name":"BSC",
+      "description":"BSC - test"
+    },
+    {
+        "id":2,
+        "name":"JOINT",
+        "description":"JOINT - test"
+    },
+    {
+        "id":3,
+        "name":"NJ",
+        "description":"NJ - test"
+    },
+    {
+        "id":4,
+        "name":"Altri",
+        "description":"Altri - test"
+    }
+  ]
+  }

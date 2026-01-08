@@ -1,0 +1,40 @@
+# Default values for mobile-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+node:
+  environment: ${environment}
+
+namespace: ${namespace}
+
+replicaCount: 1
+
+environment: ${environment}
+
+rollingUpdate:
+      maxUnavailable: 50%
+      maxSurge: 50%
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 1
+  targetCPUUtilizationPercentage: 75
+  targetMemoryUtilizationPercentage: 100
+
+image:
+  repository: ${repository}
+  tag: ${tag}
+  imagePullPolicy: ${pullPolicy}
+  pullSecretName: ${azcr_pullimage_secret_name}
+
+service:
+  port: 80 
+
+# Look here for geojson files
+geojsonPVC: geojson-pvc
+persistentVolume: geojson-pv
+store_path: "/app/data"
+storageCapacity: ${storageCapacity}
+
+debug: "${debug}"

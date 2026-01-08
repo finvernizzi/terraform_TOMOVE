@@ -1,0 +1,35 @@
+# Default values for mobile-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+namespace: ${namespace}
+
+replicaCount: ${replicacount}
+
+node:
+  environment: ${node_environment}
+
+domain: ${domain}
+environment: ${environment}
+
+image:
+  repository: ${repository}
+  tag: ${tag}
+  imagePullPolicy: IfNotPresent
+
+db:
+ url: ${db_url}
+ host: ${db_host}
+ user: ${db_user}
+ pass: ${db_pass}
+ name: ${db_name}
+
+api_version: ${api_version}
+swagger_mode: ${swagger_mode}
+token_list: ${token_list}
+token_header: 'x-api-key'
+rollingUpdate:
+    maxUnavailable: 50%
+    maxSurge: 50%
+
+serviceMonitorRelease: 'observability'

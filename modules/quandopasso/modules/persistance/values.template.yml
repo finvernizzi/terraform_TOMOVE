@@ -1,0 +1,48 @@
+# Default values for vsign persistence POD.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+namespace: ${namespace}
+dbNamespace: ${dbNamespace}
+
+replicaCount: ${replicacount}
+
+domain: ${domain}
+environment: ${environment}
+
+rollingUpdate:
+      maxUnavailable: 50%
+      maxSurge: 50%
+
+db:
+  host_name: ${db_host}
+  port: 5432
+  database: ${database}
+  synch: ${db_synch}
+  options: ${db_options}
+# Should we track all actions?
+track: ${track}
+# Should we exclude ATCC events from tracking?
+exclude_atcc: ${excludeatcc}
+      
+image:
+  repository: ${repository}
+  tag: ${tag}
+  imagePullPolicy: ${pullPolicy}
+  pullSecretName: ${azcr_pullimage_secret_name}
+
+portName: "persistencemetricport"
+serviceMonitorRelease: 'observability'
+
+broker:
+  # AMQP host name without protocol and port. <host>.<namespace>.svc.cluster.local
+  host: "amqp"
+  namespace: ${common_namespace}
+  exchange: ${exchange}
+  vhost: ${vhost}
+  user: "persistence"
+
+node:
+  env: ${environment}
+
+debug: "${debug}"

@@ -1,0 +1,119 @@
+# https://crontab.guru/ from crontabs
+
+
+# This **strictly** binds the importer to a specific domain (tenant in quandopasso)
+domain: ${domain}
+namespace: ${namespace}
+
+# FIXED_CAMERAS | MOBILE_CAMERAS
+action: 'FIXED_CAMERAS'
+broker:
+  # AMQP host name without protocol and port. <name>.<namespace>.svc.cluster.local 
+  # Queue user is hardcoded in the template
+  host: "amqp"
+  namespace: "common"
+  vhost: ${domain}
+  exchange: ${domain}
+
+
+# Seconds to wait before declare the proces closed
+wait_before_close: "180"
+
+avs_radius: ${avs_radius}
+avs_anticipate: ${avs_anticipate}
+
+# These configurations are common in areas
+areas_configs:
+  vsign_from: ${vsign_from}
+  publish_vsign: "true"
+  cert_file: ${cert_file}
+  jku: ${jku}
+  kid: ${kid}
+  sign: ${sign}
+  sign_alg: ${sign_alg}
+
+areas:
+  # ---> ID DEVE ESSERE UN NOME VALIDO <---
+  - id: Lombardia
+    # This defines the area queried to OSM and naming in the installation
+    area: Lombardia
+    coords: '{"lat": "45.468952703770185", "lng": "9.179087277700223"}'
+    debug: 'nlg:*, speed_cam_importer:*'
+    http_source_timeout: "3000000"
+    # Everyday @00:10
+    schedule: "0 * 1 * *"
+  - id: Piemonte
+    # This defines the area queried to OSM and naming in the installation
+    area: Piemonte
+    coords: '{"lat": "45.070339", "lng": "7.686864"}'
+    debug: 'nlg:*, speed_cam_importer:*'
+    http_source_timeout: "3000000"
+    # Everyday @00:10
+    schedule: "0 * 1 * *"
+  - id: Liguria
+    # This defines the area queried to OSM and naming in the installation
+    area: Liguria
+    coords: '{"lat": "44.41449730579044", "lng": "8.938884173420306"}'
+    debug: 'nlg:*, speed_cam_importer:*'
+    http_source_timeout: "3000000"
+    # Everyday @00:10
+    schedule: "0 * 1 * *"
+  - id: Madrid
+    # This defines the area queried to OSM and naming in the installation
+    area: Madrid
+    coords: '{"lat": "40.45621386455996", "lng": "-3.6932717326396585"}'
+    debug: 'nlg:*, speed_cam_importer:*'
+    http_source_timeout: "3000000"
+    schedule: "10 00 1 * *"
+  - id: "Provence-Alpes-Cote-Azur"
+    area: "Provence-Alpes-Côte d'Azur"
+    coords: '{"lat": "44.02290383611886", "lng": "6.131033385012229"}'
+    debug: 'nlg:*, speed_cam_importer:*'
+    http_source_timeout: "3000000"
+    schedule: "00 01 1 * *"
+  - id: "Occitanie"
+    area: "Occitanie"
+    coords: '{"lat": "43.70204211672051", "lng": "2.198292631659002"}'
+    debug: 'nlg:*, speed_cam_importer:*'
+    http_source_timeout: "3000000"
+    schedule: "20 01 1 * *"
+  - id: "Castile-La-Mancha"
+    area: "Castile-La Mancha"
+    coords: '{"lat": "39.506678445947585", "lng": "-2.6671411288426867"}'
+    debug: 'nlg:*, speed_cam_importer:*'
+    http_source_timeout: "3000000"
+    schedule: "30 01 1 * *"
+  - id: "Aragon"
+    area: "Aragón"
+    coords: '{"lat": "41.64244563436563", "lng": "-0.9024056749192563"}'
+    debug: 'nlg:*, speed_cam_importer:*'
+    http_source_timeout: "3000000"
+    schedule: "40 01 1 * *"
+  - id: "Catalonia"
+    area: "Catalunya"
+    coords: '{"lat": "41.39638808035365", "lng": "2.1357502513056534"}'
+    debug: 'nlg:*, speed_cam_importer:*'
+    http_source_timeout: "3000000"
+    schedule: "50 01 1 * *"
+  - id: "Castile-Leon"
+    area: "Castile and León"
+    coords: '{"lat": "41.685798263427564", "lng": "-4.706872862561933"}'
+    debug: 'nlg:*, speed_cam_importer:*'
+    http_source_timeout: "3000000"
+    schedule: "00 02 1 * *"
+osm:
+  api_url: https://overpass.kumi.systems/api/interpreter
+  query_timeout: "600"
+
+
+node:
+  env: production
+
+labels:
+  environment: prod
+
+image:
+  repository: ${repository}
+  tag: ${tag}
+  imagePullPolicy: ${pullPolicy}
+  pullSecretName: ${azcr_pullimage_secret_name}

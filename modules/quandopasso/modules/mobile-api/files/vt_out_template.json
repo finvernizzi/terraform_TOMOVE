@@ -1,0 +1,30 @@
+{
+    "templates":[
+        {
+          "lang": "it",
+          "template": "Sei uscito da una zona con controllo tutor. Hai mantenuto una velocità vedia di {{avg_speed}} km/h. La velocita massima consentita è di {{max_speed}} km/h"
+        },
+        {
+          "lang": "en",
+          "template": "You have left an area with tutor control. You have maintained an average speed of {{avg_speed}} km/h. The maximum speed allowed is {{max_speed}} km/h"
+        },
+        {
+          "lang": "fr",
+          "template": "Vous avez quitté une zone avec contrôle tuteur. Vous avez maintenu une vitesse moyenne de {{avg_speed}} km/h. La vitesse maximale autorisée est de {{max_speed}} km/h"
+        }
+      ],
+      "defaults": [
+        {
+            "lang": "it",
+            "__template__": "La tratta tutor è finita. Buon viaggio"
+          },
+          {
+            "lang": "en",
+            "__template__": "The tutor section is over. Have a nice trip"
+          },
+          {
+            "lang": "fr",
+            "__template__": "La section tuteur est terminée. Bon voyage"
+          }
+      ]
+}

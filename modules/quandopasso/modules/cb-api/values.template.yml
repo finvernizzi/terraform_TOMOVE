@@ -1,0 +1,47 @@
+# Default values for mobile-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+namespace: ${namespace}
+
+replicaCount: ${replicacount}
+
+domain: ${domain}
+environment: ${environment}
+
+# HOST: cahe-<domain>.<cache.namespace>.svc.cluster.local 
+cache:
+      namespace: ${namespace}
+
+broker:
+  # AMQP host name without protocol and port. .dev.svc.cluster.local is added in deployment config
+  host: amqp
+  namespace: ${common_namespace}
+  vhost: ${vhost}
+  exchange: ${exchange}
+
+log: true
+
+api_version: ${api_version}
+node:
+      env: ${environment}
+
+rollingUpdate:
+      maxUnavailable: 50%
+      maxSurge: 50%
+
+debug: ${debug}
+
+image:
+  repository: ${repository}
+  tag: ${tag}
+  imagePullPolicy: ${pullPolicy}
+  pullSecretName: ${azcr_pullimage_secret_name}
+  
+portName: http
+# The release for Prometheus to find the ServiceMonitor
+serviceMonitorRelease: ${service_monitor_release}
+
+jws:
+      iss: ${jws_iss}
+      sec: ${jws_sec}

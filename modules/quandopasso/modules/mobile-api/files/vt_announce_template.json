@@ -1,0 +1,17 @@
+{
+  "templates":[
+    {
+      "lang": "IT",
+      "template": "Stai entrando in una zona con controllo Virtual Tutor!"
+    },
+    {
+      "lang": "en",
+      "template": "You are entering a Virtual Tutor controlled area!"
+    },
+    {
+      "lang": "fr",
+      "template": "Vous entrez dans une zone contrôlée par Virtual Tutor!"
+    }
+  ],
+  "defaults": []
+}

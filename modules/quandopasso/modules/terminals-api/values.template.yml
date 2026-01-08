@@ -1,0 +1,46 @@
+# Default values for mobile-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+node:
+  environment: ${environment}
+
+namespace: ${namespace}
+domain: ${domain}
+
+replicaCount: ${replicacount}
+
+environment: ${environment}
+
+rollingUpdate:
+      maxUnavailable: 50%
+      maxSurge: 50%
+
+portName: "terminalsport"
+
+image:
+  repository: ${repository}
+  tag: ${tag}
+  imagePullPolicy: ${pullPolicy}
+  pullSecretName: ${azcr_pullimage_secret_name}
+
+api:
+  version: ${api_version}
+influx:
+  batchsize: 1
+  bucket: "terminals"
+  flushinterval: 1000
+  maxretries: 3
+  maxretry_delay: 15000
+  minretry_delay: 1000
+  org: 'fabrizio.invernizzi@quandopasso.com'
+  url: 'https://westeurope-1.azure.cloud2.influxdata.com'
+
+psql:
+  host: ${typeorm_host}
+  db: ${typeorm_database}
+  
+log: true
+debug: ''
+# The release for Prometheus to find the ServiceMonitor
+serviceMonitorRelease: ${service_monitor_release}

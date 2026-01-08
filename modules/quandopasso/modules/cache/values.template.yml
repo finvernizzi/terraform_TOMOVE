@@ -1,0 +1,36 @@
+# Default values for cache.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+namespace: ${namespace}
+
+replicaCount: ${replicacount}
+
+domain: ${domain}
+environment: ${environment}
+
+image:
+  repository: ${repository}
+  tag: ${tag}
+  pullPolicy: ${pullPolicy}
+  pullSecretName: ${azcr_pullimage_secret_name}
+
+broker:
+  # AMQP host name without protocol and port. <host>.<namespace>.svc.cluster.local
+  host: "amqp"
+  namespace: ${common_namespace}
+
+queue_vhost: ${queue_vhost}
+exchange: ${exchange}
+
+node:
+  env: ${environment}
+
+debug: ""
+
+portName: "cachemetricport"
+# The release for Prometheus to find the ServiceMonitor
+serviceMonitorRelease: ${service_monitor_release}
+
+mixer_config: |
+  ${mixer_config}

@@ -1,0 +1,29 @@
+# [see](https://learn.microsoft.com/en-us/azure/aks/ingress-basic?tabs=azure-cli) 
+# [configuration](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)
+controller:
+    replicaCount: 1
+    # ingressClass: nginx
+    disableIPV6: true
+    hostNetwork: false
+    ingressClassResource:
+        enabled: true
+        default: true
+    nodeSelector:
+        kubernetes.io/os: linux
+    admissionWebhooks:
+        patch:
+            nodeSelector:
+                kubernetes.io/os: linux 
+    service:
+        enableHttp: true
+        enableHttps: false
+        type: NodePort
+        nodePorts:
+          http: 30080
+        # loadBalancerIP: ${public_ip}
+        # annotations: 
+        #    service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path: /healthz
+        #    service.beta.kubernetes.io/azure-load-balancer-internal: false
+defaultBackend:
+    nodeSelector:
+        kubernetes.io/os: linux

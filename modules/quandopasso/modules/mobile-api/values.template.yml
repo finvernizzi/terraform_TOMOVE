@@ -1,0 +1,72 @@
+# Default values for mobile-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+namespace: ${namespace}
+
+replicaCount: ${replicacount}
+
+domain: ${domain}
+environment: ${environment}
+
+# Redis host <cache.NAME>.<cache.NAMESPACE>.svc.cluster.local 
+cache: 
+      name: cache
+      namespace: ${namespace}
+
+log: true
+portName: mobile-api-http
+rate_limit: ${rate_limit}
+debug: "${debug}"
+
+api_version: ${api_version}
+node:
+      env: production
+
+rollingUpdate:
+      maxUnavailable: 50%
+      maxSurge: 50%
+
+image:
+  repository: ${repository}
+  tag: ${tag}
+  imagePullPolicy: ${pullPolicy}
+  pullSecretName: ${azcr_pullimage_secret_name}
+
+# The release for Prometheus to find the ServiceMonitor
+serviceMonitorRelease: ${service_monitor_release}
+
+mobile_api_version: ${api_version}
+mobile_api_port: ${mobile_api_port}
+
+categories: |
+  ${categories}
+
+vt_aspi:
+  enabled: ${vt_aspi_importer_enabled}
+  image: 
+    repository: ${vt_aspi_importer_repository}
+    tag: ${vt_aspi_importer_tag}
+  publish_group: ${vt_aspi_publish_group}
+  publish_vsigns: "true"
+  queue_exchange: ${exchange}
+  queue_vhost: ${vhost}
+  queue_broker:
+    host: amqp
+    namespace: common
+  vt_in_template: |
+    ${replace(vt_in_template, "\n", "\n    ")}
+  vt_out_template: |
+    ${replace(vt_out_template, "\n", "\n    ")}
+  vt_state_template: |
+    ${replace(vt_state_template, "\n", "\n    ")}
+  announce_template: |
+    ${replace(vt_announce_template, "\n", "\n    ")}
+  path_files_extension: "${path_files_extension}"
+  default_avs_radius: ${default_avs_radius}
+  avs_id_prefix: ${avs_id_prefix}
+  max_number_avs_state: ${max_number_avs_state}
+  equidistant_distance: ${equidistant_distance}
+  aspi_tutors_url: ${aspi_tutors_url}
+  static_tutors_url: ${static_tutors_url}
+  category_id: ${category_id}

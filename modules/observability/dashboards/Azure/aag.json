@@ -1,0 +1,3055 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "$$hashKey": "object:3050",
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "limit": 100,
+        "name": "Annotations & Alerts",
+        "queryType": "Azure Monitor",
+        "rawQuery": "<your table>\n| where $__timeFilter() \n| project TimeGenerated, Text=YourTitleColumn, Tags=\"tag1,tag2\"",
+        "showIn": 0,
+        "subscription": "9208153d-b7d9-4b82-bbed-8222fc3ed00f",
+        "type": "dashboard",
+        "workspace": "7d59ab60-d04b-43b7-8eab-8c318b8a45bb"
+      }
+    ]
+  },
+  "description": "Azure Applictaion Gataway WAF v2",
+  "editable": true,
+  "gnetId": 13630,
+  "graphTooltip": 0,
+  "id": 51,
+  "iteration": 1623853375810,
+  "links": [],
+  "panels": [
+    {
+      "datasource": "Azure Monitor",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 5,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.5.5",
+      "targets": [
+        {
+          "appInsights": {
+            "dimension": [
+              "none"
+            ],
+            "metricName": "select",
+            "rawQuery": false,
+            "rawQueryString": "",
+            "timeColumn": "timestamp",
+            "timeGrain": "auto",
+            "valueColumn": ""
+          },
+          "azureLogAnalytics": {
+            "query": "//change this example to create your own time series query\n<table name>                                                              //the table to query (e.g. Usage, Heartbeat, Perf)\n| where $__timeFilter(TimeGenerated)                                      //this is a macro used to show the full chart’s time range, choose the datetime column here\n| summarize count() by <group by column>, bin(TimeGenerated, $__interval) //change “group by column” to a column in your table, such as “Computer”. The $__interval macro is used to auto-select the time grain. Can also use 1h, 5m etc.\n| order by TimeGenerated asc",
+            "resultFormat": "time_series",
+            "workspace": "7d59ab60-d04b-43b7-8eab-8c318b8a45bb"
+          },
+          "azureMonitor": {
+            "aggOptions": [
+              "Average"
+            ],
+            "aggregation": "Average",
+            "allowedTimeGrainsMs": [
+              60000,
+              300000,
+              900000,
+              1800000,
+              3600000,
+              21600000,
+              43200000,
+              86400000
+            ],
+            "dimension": null,
+            "dimensionFilter": "*",
+            "dimensionFilters": [],
+            "dimensions": [],
+            "metricDefinition": "Microsoft.Network/applicationGateways",
+            "metricName": "ComputeUnits",
+            "metricNamespace": "Microsoft.Network/applicationGateways",
+            "resourceGroup": "quandopasso_development1",
+            "resourceName": "aag-quandopasso-development1",
+            "timeGrain": "auto",
+            "timeGrains": [
+              {
+                "$$hashKey": "object:557",
+                "text": "auto",
+                "value": "auto"
+              },
+              {
+                "$$hashKey": "object:558",
+                "text": "1 minute",
+                "value": "PT1M"
+              },
+              {
+                "$$hashKey": "object:559",
+                "text": "5 minutes",
+                "value": "PT5M"
+              },
+              {
+                "$$hashKey": "object:560",
+                "text": "15 minutes",
+                "value": "PT15M"
+              },
+              {
+                "$$hashKey": "object:561",
+                "text": "30 minutes",
+                "value": "PT30M"
+              },
+              {
+                "$$hashKey": "object:562",
+                "text": "1 hour",
+                "value": "PT1H"
+              },
+              {
+                "$$hashKey": "object:563",
+                "text": "6 hours",
+                "value": "PT6H"
+              },
+              {
+                "$$hashKey": "object:564",
+                "text": "12 hours",
+                "value": "PT12H"
+              },
+              {
+                "$$hashKey": "object:565",
+                "text": "1 day",
+                "value": "P1D"
+              }
+            ],
+            "top": "10"
+          },
+          "insightsAnalytics": {
+            "query": "",
+            "resultFormat": "time_series"
+          },
+          "queryType": "Azure Monitor",
+          "refId": "A",
+          "subscription": "8a0bdc85-cc1c-4894-9acd-aedeec5a3eaa"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Current Compute Units",
+      "type": "stat"
+    },
+    {
+      "datasource": "Azure Monitor",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 5,
+        "x": 5,
+        "y": 0
+      },
+      "id": 7,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.5.5",
+      "targets": [
+        {
+          "appInsights": {
+            "dimension": [
+              "none"
+            ],
+            "metricName": "select",
+            "rawQuery": false,
+            "rawQueryString": "",
+            "timeColumn": "timestamp",
+            "timeGrain": "auto",
+            "valueColumn": ""
+          },
+          "azureLogAnalytics": {
+            "query": "//change this example to create your own time series query\n<table name>                                                              //the table to query (e.g. Usage, Heartbeat, Perf)\n| where $__timeFilter(TimeGenerated)                                      //this is a macro used to show the full chart’s time range, choose the datetime column here\n| summarize count() by <group by column>, bin(TimeGenerated, $__interval) //change “group by column” to a column in your table, such as “Computer”. The $__interval macro is used to auto-select the time grain. Can also use 1h, 5m etc.\n| order by TimeGenerated asc",
+            "resultFormat": "time_series",
+            "workspace": "7d59ab60-d04b-43b7-8eab-8c318b8a45bb"
+          },
+          "azureMonitor": {
+            "aggOptions": [
+              "Average"
+            ],
+            "aggregation": "Average",
+            "allowedTimeGrainsMs": [
+              60000,
+              300000,
+              900000,
+              1800000,
+              3600000,
+              21600000,
+              43200000,
+              86400000
+            ],
+            "dimension": null,
+            "dimensionFilter": "*",
+            "dimensionFilters": [],
+            "dimensions": [],
+            "metricDefinition": "Microsoft.Network/applicationGateways",
+            "metricName": "CapacityUnits",
+            "metricNamespace": "Microsoft.Network/applicationGateways",
+            "resourceGroup": "quandopasso_development1",
+            "resourceName": "aag-quandopasso-development1",
+            "timeGrain": "auto",
+            "timeGrains": [
+              {
+                "$$hashKey": "object:583",
+                "text": "auto",
+                "value": "auto"
+              },
+              {
+                "$$hashKey": "object:584",
+                "text": "1 minute",
+                "value": "PT1M"
+              },
+              {
+                "$$hashKey": "object:585",
+                "text": "5 minutes",
+                "value": "PT5M"
+              },
+              {
+                "$$hashKey": "object:586",
+                "text": "15 minutes",
+                "value": "PT15M"
+              },
+              {
+                "$$hashKey": "object:587",
+                "text": "30 minutes",
+                "value": "PT30M"
+              },
+              {
+                "$$hashKey": "object:588",
+                "text": "1 hour",
+                "value": "PT1H"
+              },
+              {
+                "$$hashKey": "object:589",
+                "text": "6 hours",
+                "value": "PT6H"
+              },
+              {
+                "$$hashKey": "object:590",
+                "text": "12 hours",
+                "value": "PT12H"
+              },
+              {
+                "$$hashKey": "object:591",
+                "text": "1 day",
+                "value": "P1D"
+              }
+            ],
+            "top": "10"
+          },
+          "insightsAnalytics": {
+            "query": "",
+            "resultFormat": "time_series"
+          },
+          "queryType": "Azure Monitor",
+          "refId": "A",
+          "subscription": "8a0bdc85-cc1c-4894-9acd-aedeec5a3eaa"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Current Capacity Units",
+      "type": "stat"
+    },
+    {
+      "datasource": "Azure Monitor",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 3,
+        "x": 10,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.5.5",
+      "targets": [
+        {
+          "appInsights": {
+            "dimension": [
+              "none"
+            ],
+            "metricName": "select",
+            "rawQuery": false,
+            "rawQueryString": "",
+            "timeColumn": "timestamp",
+            "timeGrain": "auto",
+            "valueColumn": ""
+          },
+          "azureLogAnalytics": {
+            "query": "//change this example to create your own time series query\n<table name>                                                              //the table to query (e.g. Usage, Heartbeat, Perf)\n| where $__timeFilter(TimeGenerated)                                      //this is a macro used to show the full chart’s time range, choose the datetime column here\n| summarize count() by <group by column>, bin(TimeGenerated, $__interval) //change “group by column” to a column in your table, such as “Computer”. The $__interval macro is used to auto-select the time grain. Can also use 1h, 5m etc.\n| order by TimeGenerated asc",
+            "resultFormat": "time_series",
+            "workspace": "7d59ab60-d04b-43b7-8eab-8c318b8a45bb"
+          },
+          "azureMonitor": {
+            "aggOptions": [
+              "Average"
+            ],
+            "aggregation": "Average",
+            "allowedTimeGrainsMs": [
+              60000,
+              300000,
+              900000,
+              1800000,
+              3600000,
+              21600000,
+              43200000,
+              86400000
+            ],
+            "dimension": "None",
+            "dimensionFilter": "*",
+            "dimensionFilters": [],
+            "dimensions": [
+              {
+                "text": "BackendPool HttpSettings",
+                "value": "BackendSettingsPool"
+              }
+            ],
+            "metricDefinition": "Microsoft.Network/applicationGateways",
+            "metricName": "HealthyHostCount",
+            "metricNamespace": "Microsoft.Network/applicationGateways",
+            "resourceGroup": "quandopasso_development1",
+            "resourceName": "aag-quandopasso-development1",
+            "timeGrain": "auto",
+            "timeGrains": [
+              {
+                "$$hashKey": "object:609",
+                "text": "auto",
+                "value": "auto"
+              },
+              {
+                "$$hashKey": "object:610",
+                "text": "1 minute",
+                "value": "PT1M"
+              },
+              {
+                "$$hashKey": "object:611",
+                "text": "5 minutes",
+                "value": "PT5M"
+              },
+              {
+                "$$hashKey": "object:612",
+                "text": "15 minutes",
+                "value": "PT15M"
+              },
+              {
+                "$$hashKey": "object:613",
+                "text": "30 minutes",
+                "value": "PT30M"
+              },
+              {
+                "$$hashKey": "object:614",
+                "text": "1 hour",
+                "value": "PT1H"
+              },
+              {
+                "$$hashKey": "object:615",
+                "text": "6 hours",
+                "value": "PT6H"
+              },
+              {
+                "$$hashKey": "object:616",
+                "text": "12 hours",
+                "value": "PT12H"
+              },
+              {
+                "$$hashKey": "object:617",
+                "text": "1 day",
+                "value": "P1D"
+              }
+            ],
+            "top": "10"
+          },
+          "insightsAnalytics": {
+            "query": "",
+            "resultFormat": "time_series"
+          },
+          "queryType": "Azure Monitor",
+          "refId": "A",
+          "subscription": "8a0bdc85-cc1c-4894-9acd-aedeec5a3eaa"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Healthy Host Count",
+      "type": "stat"
+    },
+    {
+      "datasource": "Azure Monitor",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1000
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 5,
+        "x": 13,
+        "y": 0
+      },
+      "id": 21,
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {}
+      },
+      "pluginVersion": "7.5.5",
+      "targets": [
+        {
+          "appInsights": {
+            "dimension": [
+              "none"
+            ],
+            "metricName": "select",
+            "rawQuery": false,
+            "rawQueryString": "",
+            "timeColumn": "timestamp",
+            "timeGrain": "auto",
+            "valueColumn": ""
+          },
+          "azureLogAnalytics": {
+            "query": "//change this example to create your own time series query\n<table name>                                                              //the table to query (e.g. Usage, Heartbeat, Perf)\n| where $__timeFilter(TimeGenerated)                                      //this is a macro used to show the full chart’s time range, choose the datetime column here\n| summarize count() by <group by column>, bin(TimeGenerated, $__interval) //change “group by column” to a column in your table, such as “Computer”. The $__interval macro is used to auto-select the time grain. Can also use 1h, 5m etc.\n| order by TimeGenerated asc",
+            "resultFormat": "time_series",
+            "workspace": "7d59ab60-d04b-43b7-8eab-8c318b8a45bb"
+          },
+          "azureMonitor": {
+            "aggOptions": [
+              "Total"
+            ],
+            "aggregation": "Total",
+            "alias": "{{dimensionvalue}}",
+            "allowedTimeGrainsMs": [
+              60000,
+              300000,
+              900000,
+              1800000,
+              3600000,
+              21600000,
+              43200000,
+              86400000
+            ],
+            "dimensionFilters": [],
+            "dimensions": [
+              {
+                "text": "Listener",
+                "value": "Listener"
+              },
+              {
+                "text": "TLS Protocol",
+                "value": "TlsProtocol"
+              }
+            ],
+            "metricDefinition": "Microsoft.Network/applicationGateways",
+            "metricName": "TlsProtocol",
+            "metricNamespace": "Microsoft.Network/applicationGateways",
+            "resourceGroup": "quandopasso_development1",
+            "resourceName": "aag-quandopasso-development1",
+            "timeGrain": "auto",
+            "timeGrains": [
+              {
+                "$$hashKey": "object:638",
+                "text": "auto",
+                "value": "auto"
+              },
+              {
+                "$$hashKey": "object:639",
+                "text": "1 minute",
+                "value": "PT1M"
+              },
+              {
+                "$$hashKey": "object:640",
+                "text": "5 minutes",
+                "value": "PT5M"
+              },
+              {
+                "$$hashKey": "object:641",
+                "text": "15 minutes",
+                "value": "PT15M"
+              },
+              {
+                "$$hashKey": "object:642",
+                "text": "30 minutes",
+                "value": "PT30M"
+              },
+              {
+                "$$hashKey": "object:643",
+                "text": "1 hour",
+                "value": "PT1H"
+              },
+              {
+                "$$hashKey": "object:644",
+                "text": "6 hours",
+                "value": "PT6H"
+              },
+              {
+                "$$hashKey": "object:645",
+                "text": "12 hours",
+                "value": "PT12H"
+              },
+              {
+                "$$hashKey": "object:646",
+                "text": "1 day",
+                "value": "P1D"
+              }
+            ],
+            "top": "10"
+          },
+          "insightsAnalytics": {
+            "query": "",
+            "resultFormat": "time_series"
+          },
+          "queryType": "Azure Monitor",
+          "refId": "A",
+          "subscription": "8a0bdc85-cc1c-4894-9acd-aedeec5a3eaa"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Client TLS Protocol",
+      "type": "bargauge"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Azure Monitor",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 18,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 5,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.5",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "appInsights": {
+            "dimension": [
+              "none"
+            ],
+            "metricName": "select",
+            "rawQuery": false,
+            "rawQueryString": "",
+            "timeColumn": "timestamp",
+            "timeGrain": "auto",
+            "valueColumn": ""
+          },
+          "azureLogAnalytics": {
+            "query": "//change this example to create your own time series query\n<table name>                                                              //the table to query (e.g. Usage, Heartbeat, Perf)\n| where $__timeFilter(TimeGenerated)                                      //this is a macro used to show the full chart’s time range, choose the datetime column here\n| summarize count() by <group by column>, bin(TimeGenerated, $__interval) //change “group by column” to a column in your table, such as “Computer”. The $__interval macro is used to auto-select the time grain. Can also use 1h, 5m etc.\n| order by TimeGenerated asc",
+            "resultFormat": "time_series",
+            "workspace": "7d59ab60-d04b-43b7-8eab-8c318b8a45bb"
+          },
+          "azureMonitor": {
+            "aggOptions": [
+              "Total"
+            ],
+            "aggregation": "Total",
+            "allowedTimeGrainsMs": [
+              60000,
+              300000,
+              900000,
+              1800000,
+              3600000,
+              21600000,
+              43200000,
+              86400000
+            ],
+            "dimension": "None",
+            "dimensionFilter": "*",
+            "dimensionFilters": [],
+            "dimensions": [
+              {
+                "text": "BackendPool HttpSettings",
+                "value": "BackendSettingsPool"
+              }
+            ],
+            "metricDefinition": "Microsoft.Network/applicationGateways",
+            "metricName": "TotalRequests",
+            "metricNamespace": "Microsoft.Network/applicationGateways",
+            "resourceGroup": "quandopasso_development1",
+            "resourceName": "aag-quandopasso-development1",
+            "timeGrain": "auto",
+            "timeGrains": [
+              {
+                "$$hashKey": "object:724",
+                "text": "auto",
+                "value": "auto"
+              },
+              {
+                "$$hashKey": "object:725",
+                "text": "1 minute",
+                "value": "PT1M"
+              },
+              {
+                "$$hashKey": "object:726",
+                "text": "5 minutes",
+                "value": "PT5M"
+              },
+              {
+                "$$hashKey": "object:727",
+                "text": "15 minutes",
+                "value": "PT15M"
+              },
+              {
+                "$$hashKey": "object:728",
+                "text": "30 minutes",
+                "value": "PT30M"
+              },
+              {
+                "$$hashKey": "object:729",
+                "text": "1 hour",
+                "value": "PT1H"
+              },
+              {
+                "$$hashKey": "object:730",
+                "text": "6 hours",
+                "value": "PT6H"
+              },
+              {
+                "$$hashKey": "object:731",
+                "text": "12 hours",
+                "value": "PT12H"
+              },
+              {
+                "$$hashKey": "object:732",
+                "text": "1 day",
+                "value": "P1D"
+              }
+            ],
+            "top": "10"
+          },
+          "insightsAnalytics": {
+            "query": "",
+            "resultFormat": "time_series"
+          },
+          "queryType": "Azure Monitor",
+          "refId": "A",
+          "subscription": "8a0bdc85-cc1c-4894-9acd-aedeec5a3eaa"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Total Requests",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:4217",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:4218",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Azure Monitor",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 10,
+        "x": 0,
+        "y": 7
+      },
+      "hiddenSeries": false,
+      "id": 4,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.5",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "appInsights": {
+            "dimension": [
+              "none"
+            ],
+            "metricName": "select",
+            "rawQuery": false,
+            "rawQueryString": "",
+            "timeColumn": "timestamp",
+            "timeGrain": "auto",
+            "valueColumn": ""
+          },
+          "azureLogAnalytics": {
+            "query": "//change this example to create your own time series query\n<table name>                                                              //the table to query (e.g. Usage, Heartbeat, Perf)\n| where $__timeFilter(TimeGenerated)                                      //this is a macro used to show the full chart’s time range, choose the datetime column here\n| summarize count() by <group by column>, bin(TimeGenerated, $__interval) //change “group by column” to a column in your table, such as “Computer”. The $__interval macro is used to auto-select the time grain. Can also use 1h, 5m etc.\n| order by TimeGenerated asc",
+            "resultFormat": "time_series",
+            "workspace": "7d59ab60-d04b-43b7-8eab-8c318b8a45bb"
+          },
+          "azureMonitor": {
+            "aggOptions": [
+              "Total"
+            ],
+            "aggregation": "Total",
+            "allowedTimeGrainsMs": [
+              60000,
+              300000,
+              900000,
+              1800000,
+              3600000,
+              21600000,
+              43200000,
+              86400000
+            ],
+            "dimension": "",
+            "dimensionFilter": "*",
+            "dimensionFilters": [],
+            "dimensions": [
+              {
+                "text": "BackendPool HttpSettings",
+                "value": "BackendSettingsPool"
+              }
+            ],
+            "metricDefinition": "Microsoft.Network/applicationGateways",
+            "metricName": "TotalRequests",
+            "metricNamespace": "Microsoft.Network/applicationGateways",
+            "resourceGroup": "quandopasso_development1",
+            "resourceName": "aag-quandopasso-development1",
+            "timeGrain": "auto",
+            "timeGrains": [
+              {
+                "$$hashKey": "object:531",
+                "text": "auto",
+                "value": "auto"
+              },
+              {
+                "$$hashKey": "object:532",
+                "text": "1 minute",
+                "value": "PT1M"
+              },
+              {
+                "$$hashKey": "object:533",
+                "text": "5 minutes",
+                "value": "PT5M"
+              },
+              {
+                "$$hashKey": "object:534",
+                "text": "15 minutes",
+                "value": "PT15M"
+              },
+              {
+                "$$hashKey": "object:535",
+                "text": "30 minutes",
+                "value": "PT30M"
+              },
+              {
+                "$$hashKey": "object:536",
+                "text": "1 hour",
+                "value": "PT1H"
+              },
+              {
+                "$$hashKey": "object:537",
+                "text": "6 hours",
+                "value": "PT6H"
+              },
+              {
+                "$$hashKey": "object:538",
+                "text": "12 hours",
+                "value": "PT12H"
+              },
+              {
+                "$$hashKey": "object:539",
+                "text": "1 day",
+                "value": "P1D"
+              }
+            ],
+            "top": "10"
+          },
+          "insightsAnalytics": {
+            "query": "",
+            "resultFormat": "time_series"
+          },
+          "queryType": "Azure Monitor",
+          "refId": "A",
+          "subscription": "8a0bdc85-cc1c-4894-9acd-aedeec5a3eaa"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Current Connections",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:4217",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:4218",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Azure Monitor",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 7,
+        "x": 10,
+        "y": 7
+      },
+      "hiddenSeries": false,
+      "id": 17,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.5",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "appInsights": {
+            "dimension": [
+              "none"
+            ],
+            "metricName": "select",
+            "rawQuery": false,
+            "rawQueryString": "",
+            "timeColumn": "timestamp",
+            "timeGrain": "auto",
+            "valueColumn": ""
+          },
+          "azureLogAnalytics": {
+            "query": "//change this example to create your own time series query\n<table name>                                                              //the table to query (e.g. Usage, Heartbeat, Perf)\n| where $__timeFilter(TimeGenerated)                                      //this is a macro used to show the full chart’s time range, choose the datetime column here\n| summarize count() by <group by column>, bin(TimeGenerated, $__interval) //change “group by column” to a column in your table, such as “Computer”. The $__interval macro is used to auto-select the time grain. Can also use 1h, 5m etc.\n| order by TimeGenerated asc",
+            "resultFormat": "time_series",
+            "workspace": "7d59ab60-d04b-43b7-8eab-8c318b8a45bb"
+          },
+          "azureMonitor": {
+            "aggOptions": [
+              "Average"
+            ],
+            "aggregation": "Average",
+            "allowedTimeGrainsMs": [
+              60000,
+              300000,
+              900000,
+              1800000,
+              3600000,
+              21600000,
+              43200000,
+              86400000
+            ],
+            "dimension": null,
+            "dimensionFilter": "*",
+            "dimensionFilters": [],
+            "dimensions": [],
+            "metricDefinition": "Microsoft.Network/applicationGateways",
+            "metricName": "NewConnectionsPerSecond",
+            "metricNamespace": "Microsoft.Network/applicationGateways",
+            "resourceGroup": "quandopasso_development1",
+            "resourceName": "aag-quandopasso-development1",
+            "timeGrain": "auto",
+            "timeGrains": [
+              {
+                "$$hashKey": "object:801",
+                "text": "auto",
+                "value": "auto"
+              },
+              {
+                "$$hashKey": "object:802",
+                "text": "1 minute",
+                "value": "PT1M"
+              },
+              {
+                "$$hashKey": "object:803",
+                "text": "5 minutes",
+                "value": "PT5M"
+              },
+              {
+                "$$hashKey": "object:804",
+                "text": "15 minutes",
+                "value": "PT15M"
+              },
+              {
+                "$$hashKey": "object:805",
+                "text": "30 minutes",
+                "value": "PT30M"
+              },
+              {
+                "$$hashKey": "object:806",
+                "text": "1 hour",
+                "value": "PT1H"
+              },
+              {
+                "$$hashKey": "object:807",
+                "text": "6 hours",
+                "value": "PT6H"
+              },
+              {
+                "$$hashKey": "object:808",
+                "text": "12 hours",
+                "value": "PT12H"
+              },
+              {
+                "$$hashKey": "object:809",
+                "text": "1 day",
+                "value": "P1D"
+              }
+            ],
+            "top": "10"
+          },
+          "insightsAnalytics": {
+            "query": "",
+            "resultFormat": "time_series"
+          },
+          "queryType": "Azure Monitor",
+          "refId": "A",
+          "subscription": "8a0bdc85-cc1c-4894-9acd-aedeec5a3eaa"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "New Connections per second",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:2657",
+          "format": "cps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:2658",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Azure Monitor",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 7,
+        "x": 17,
+        "y": 7
+      },
+      "hiddenSeries": false,
+      "id": 6,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.5",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "appInsights": {
+            "dimension": [
+              "none"
+            ],
+            "metricName": "select",
+            "rawQuery": false,
+            "rawQueryString": "",
+            "timeColumn": "timestamp",
+            "timeGrain": "auto",
+            "valueColumn": ""
+          },
+          "azureLogAnalytics": {
+            "query": "//change this example to create your own time series query\n<table name>                                                              //the table to query (e.g. Usage, Heartbeat, Perf)\n| where $__timeFilter(TimeGenerated)                                      //this is a macro used to show the full chart’s time range, choose the datetime column here\n| summarize count() by <group by column>, bin(TimeGenerated, $__interval) //change “group by column” to a column in your table, such as “Computer”. The $__interval macro is used to auto-select the time grain. Can also use 1h, 5m etc.\n| order by TimeGenerated asc",
+            "resultFormat": "time_series",
+            "workspace": "7d59ab60-d04b-43b7-8eab-8c318b8a45bb"
+          },
+          "azureMonitor": {
+            "aggOptions": [
+              "Average"
+            ],
+            "aggregation": "Average",
+            "allowedTimeGrainsMs": [
+              60000,
+              300000,
+              900000,
+              1800000,
+              3600000,
+              21600000,
+              43200000,
+              86400000
+            ],
+            "dimension": "",
+            "dimensionFilter": "*",
+            "dimensionFilters": [],
+            "dimensions": [],
+            "metricDefinition": "Microsoft.Network/applicationGateways",
+            "metricName": "Throughput",
+            "metricNamespace": "Microsoft.Network/applicationGateways",
+            "resourceGroup": "quandopasso_development1",
+            "resourceName": "aag-quandopasso-development1",
+            "timeGrain": "auto",
+            "timeGrains": [
+              {
+                "$$hashKey": "object:878",
+                "text": "auto",
+                "value": "auto"
+              },
+              {
+                "$$hashKey": "object:879",
+                "text": "1 minute",
+                "value": "PT1M"
+              },
+              {
+                "$$hashKey": "object:880",
+                "text": "5 minutes",
+                "value": "PT5M"
+              },
+              {
+                "$$hashKey": "object:881",
+                "text": "15 minutes",
+                "value": "PT15M"
+              },
+              {
+                "$$hashKey": "object:882",
+                "text": "30 minutes",
+                "value": "PT30M"
+              },
+              {
+                "$$hashKey": "object:883",
+                "text": "1 hour",
+                "value": "PT1H"
+              },
+              {
+                "$$hashKey": "object:884",
+                "text": "6 hours",
+                "value": "PT6H"
+              },
+              {
+                "$$hashKey": "object:885",
+                "text": "12 hours",
+                "value": "PT12H"
+              },
+              {
+                "$$hashKey": "object:886",
+                "text": "1 day",
+                "value": "P1D"
+              }
+            ],
+            "top": "10"
+          },
+          "insightsAnalytics": {
+            "query": "",
+            "resultFormat": "time_series"
+          },
+          "queryType": "Azure Monitor",
+          "refId": "A",
+          "subscription": "8a0bdc85-cc1c-4894-9acd-aedeec5a3eaa"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Throughput",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:4677",
+          "format": "Bps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:4678",
+          "format": "bytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Azure Monitor",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 14
+      },
+      "hiddenSeries": false,
+      "id": 19,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.5",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "appInsights": {
+            "dimension": [
+              "none"
+            ],
+            "metricName": "select",
+            "rawQuery": false,
+            "rawQueryString": "",
+            "timeColumn": "timestamp",
+            "timeGrain": "auto",
+            "valueColumn": ""
+          },
+          "azureLogAnalytics": {
+            "query": "//change this example to create your own time series query\n<table name>                                                              //the table to query (e.g. Usage, Heartbeat, Perf)\n| where $__timeFilter(TimeGenerated)                                      //this is a macro used to show the full chart’s time range, choose the datetime column here\n| summarize count() by <group by column>, bin(TimeGenerated, $__interval) //change “group by column” to a column in your table, such as “Computer”. The $__interval macro is used to auto-select the time grain. Can also use 1h, 5m etc.\n| order by TimeGenerated asc",
+            "resultFormat": "time_series",
+            "workspace": "7d59ab60-d04b-43b7-8eab-8c318b8a45bb"
+          },
+          "azureMonitor": {
+            "aggOptions": [
+              "Average"
+            ],
+            "aggregation": "Average",
+            "allowedTimeGrainsMs": [
+              60000,
+              300000,
+              900000,
+              1800000,
+              3600000,
+              21600000,
+              43200000,
+              86400000
+            ],
+            "dimension": "None",
+            "dimensionFilter": "*",
+            "dimensionFilters": [],
+            "dimensions": [
+              {
+                "text": "Listener",
+                "value": "Listener"
+              }
+            ],
+            "metricDefinition": "Microsoft.Network/applicationGateways",
+            "metricName": "ClientRtt",
+            "metricNamespace": "Microsoft.Network/applicationGateways",
+            "resourceGroup": "quandopasso_development1",
+            "resourceName": "aag-quandopasso-development1",
+            "timeGrain": "auto",
+            "timeGrains": [
+              {
+                "$$hashKey": "object:1023",
+                "text": "auto",
+                "value": "auto"
+              },
+              {
+                "$$hashKey": "object:1024",
+                "text": "1 minute",
+                "value": "PT1M"
+              },
+              {
+                "$$hashKey": "object:1025",
+                "text": "5 minutes",
+                "value": "PT5M"
+              },
+              {
+                "$$hashKey": "object:1026",
+                "text": "15 minutes",
+                "value": "PT15M"
+              },
+              {
+                "$$hashKey": "object:1027",
+                "text": "30 minutes",
+                "value": "PT30M"
+              },
+              {
+                "$$hashKey": "object:1028",
+                "text": "1 hour",
+                "value": "PT1H"
+              },
+              {
+                "$$hashKey": "object:1029",
+                "text": "6 hours",
+                "value": "PT6H"
+              },
+              {
+                "$$hashKey": "object:1030",
+                "text": "12 hours",
+                "value": "PT12H"
+              },
+              {
+                "$$hashKey": "object:1031",
+                "text": "1 day",
+                "value": "P1D"
+              }
+            ],
+            "top": "10"
+          },
+          "insightsAnalytics": {
+            "query": "",
+            "resultFormat": "time_series"
+          },
+          "queryType": "Azure Monitor",
+          "refId": "A",
+          "subscription": "8a0bdc85-cc1c-4894-9acd-aedeec5a3eaa"
+        },
+        {
+          "appInsights": {
+            "dimension": [
+              "none"
+            ],
+            "metricName": "select",
+            "rawQuery": false,
+            "rawQueryString": "",
+            "timeColumn": "timestamp",
+            "timeGrain": "auto",
+            "valueColumn": ""
+          },
+          "azureLogAnalytics": {
+            "query": "//change this example to create your own time series query\n<table name>                                                              //the table to query (e.g. Usage, Heartbeat, Perf)\n| where $__timeFilter(TimeGenerated)                                      //this is a macro used to show the full chart’s time range, choose the datetime column here\n| summarize count() by <group by column>, bin(TimeGenerated, $__interval) //change “group by column” to a column in your table, such as “Computer”. The $__interval macro is used to auto-select the time grain. Can also use 1h, 5m etc.\n| order by TimeGenerated asc",
+            "resultFormat": "time_series",
+            "workspace": "7d59ab60-d04b-43b7-8eab-8c318b8a45bb"
+          },
+          "azureMonitor": {
+            "aggOptions": [
+              "Average"
+            ],
+            "aggregation": "Average",
+            "allowedTimeGrainsMs": [
+              60000,
+              300000,
+              900000,
+              1800000,
+              3600000,
+              21600000,
+              43200000,
+              86400000
+            ],
+            "dimension": "None",
+            "dimensionFilter": "*",
+            "dimensionFilters": [],
+            "dimensions": [
+              {
+                "$$hashKey": "object:3073",
+                "text": "None",
+                "value": "None"
+              },
+              {
+                "$$hashKey": "object:3074",
+                "text": "Listener",
+                "value": "Listener"
+              }
+            ],
+            "metricDefinition": "Microsoft.Network/applicationGateways",
+            "metricName": "ApplicationGatewayTotalTime",
+            "metricNamespace": "Microsoft.Network/applicationGateways",
+            "resourceGroup": "$ResourceGroup",
+            "resourceName": "$ResourceName",
+            "timeGrain": "auto",
+            "timeGrains": [
+              {
+                "$$hashKey": "object:3064",
+                "text": "auto",
+                "value": "auto"
+              },
+              {
+                "$$hashKey": "object:3065",
+                "text": "1 minute",
+                "value": "PT1M"
+              },
+              {
+                "$$hashKey": "object:3066",
+                "text": "5 minutes",
+                "value": "PT5M"
+              },
+              {
+                "$$hashKey": "object:3067",
+                "text": "15 minutes",
+                "value": "PT15M"
+              },
+              {
+                "$$hashKey": "object:3068",
+                "text": "30 minutes",
+                "value": "PT30M"
+              },
+              {
+                "$$hashKey": "object:3069",
+                "text": "1 hour",
+                "value": "PT1H"
+              },
+              {
+                "$$hashKey": "object:3070",
+                "text": "6 hours",
+                "value": "PT6H"
+              },
+              {
+                "$$hashKey": "object:3071",
+                "text": "12 hours",
+                "value": "PT12H"
+              },
+              {
+                "$$hashKey": "object:3072",
+                "text": "1 day",
+                "value": "P1D"
+              }
+            ],
+            "top": "10"
+          },
+          "hide": true,
+          "insightsAnalytics": {
+            "query": "",
+            "resultFormat": "time_series"
+          },
+          "queryType": "Azure Monitor",
+          "refId": "B",
+          "subscription": "9208153d-b7d9-4b82-bbed-8222fc3ed00f"
+        },
+        {
+          "appInsights": {
+            "dimension": [
+              "none"
+            ],
+            "metricName": "select",
+            "rawQuery": false,
+            "rawQueryString": "",
+            "timeColumn": "timestamp",
+            "timeGrain": "auto",
+            "valueColumn": ""
+          },
+          "azureLogAnalytics": {
+            "query": "//change this example to create your own time series query\n<table name>                                                              //the table to query (e.g. Usage, Heartbeat, Perf)\n| where $__timeFilter(TimeGenerated)                                      //this is a macro used to show the full chart’s time range, choose the datetime column here\n| summarize count() by <group by column>, bin(TimeGenerated, $__interval) //change “group by column” to a column in your table, such as “Computer”. The $__interval macro is used to auto-select the time grain. Can also use 1h, 5m etc.\n| order by TimeGenerated asc",
+            "resultFormat": "time_series",
+            "workspace": "7d59ab60-d04b-43b7-8eab-8c318b8a45bb"
+          },
+          "azureMonitor": {
+            "aggOptions": [
+              "Average"
+            ],
+            "aggregation": "Average",
+            "allowedTimeGrainsMs": [
+              60000,
+              300000,
+              900000,
+              1800000,
+              3600000,
+              21600000,
+              43200000,
+              86400000
+            ],
+            "dimension": "None",
+            "dimensionFilter": "*",
+            "dimensionFilters": [],
+            "dimensions": [
+              {
+                "$$hashKey": "object:3239",
+                "text": "None",
+                "value": "None"
+              },
+              {
+                "$$hashKey": "object:3240",
+                "text": "Listener",
+                "value": "Listener"
+              },
+              {
+                "$$hashKey": "object:3241",
+                "text": "Backend Server",
+                "value": "BackendServer"
+              },
+              {
+                "$$hashKey": "object:3242",
+                "text": "Backend Pool",
+                "value": "BackendPool"
+              },
+              {
+                "$$hashKey": "object:3243",
+                "text": "Backend Http Setting",
+                "value": "BackendHttpSetting"
+              }
+            ],
+            "metricDefinition": "Microsoft.Network/applicationGateways",
+            "metricName": "BackendConnectTime",
+            "metricNamespace": "Microsoft.Network/applicationGateways",
+            "resourceGroup": "$ResourceGroup",
+            "resourceName": "$ResourceName",
+            "timeGrain": "auto",
+            "timeGrains": [
+              {
+                "$$hashKey": "object:3230",
+                "text": "auto",
+                "value": "auto"
+              },
+              {
+                "$$hashKey": "object:3231",
+                "text": "1 minute",
+                "value": "PT1M"
+              },
+              {
+                "$$hashKey": "object:3232",
+                "text": "5 minutes",
+                "value": "PT5M"
+              },
+              {
+                "$$hashKey": "object:3233",
+                "text": "15 minutes",
+                "value": "PT15M"
+              },
+              {
+                "$$hashKey": "object:3234",
+                "text": "30 minutes",
+                "value": "PT30M"
+              },
+              {
+                "$$hashKey": "object:3235",
+                "text": "1 hour",
+                "value": "PT1H"
+              },
+              {
+                "$$hashKey": "object:3236",
+                "text": "6 hours",
+                "value": "PT6H"
+              },
+              {
+                "$$hashKey": "object:3237",
+                "text": "12 hours",
+                "value": "PT12H"
+              },
+              {
+                "$$hashKey": "object:3238",
+                "text": "1 day",
+                "value": "P1D"
+              }
+            ],
+            "top": "10"
+          },
+          "insightsAnalytics": {
+            "query": "",
+            "resultFormat": "time_series"
+          },
+          "queryType": "Azure Monitor",
+          "refId": "C",
+          "subscription": "9208153d-b7d9-4b82-bbed-8222fc3ed00f"
+        },
+        {
+          "appInsights": {
+            "dimension": [
+              "none"
+            ],
+            "metricName": "select",
+            "rawQuery": false,
+            "rawQueryString": "",
+            "timeColumn": "timestamp",
+            "timeGrain": "auto",
+            "valueColumn": ""
+          },
+          "azureLogAnalytics": {
+            "query": "//change this example to create your own time series query\n<table name>                                                              //the table to query (e.g. Usage, Heartbeat, Perf)\n| where $__timeFilter(TimeGenerated)                                      //this is a macro used to show the full chart’s time range, choose the datetime column here\n| summarize count() by <group by column>, bin(TimeGenerated, $__interval) //change “group by column” to a column in your table, such as “Computer”. The $__interval macro is used to auto-select the time grain. Can also use 1h, 5m etc.\n| order by TimeGenerated asc",
+            "resultFormat": "time_series",
+            "workspace": "7d59ab60-d04b-43b7-8eab-8c318b8a45bb"
+          },
+          "azureMonitor": {
+            "aggOptions": [
+              "Average"
+            ],
+            "aggregation": "Average",
+            "allowedTimeGrainsMs": [
+              60000,
+              300000,
+              900000,
+              1800000,
+              3600000,
+              21600000,
+              43200000,
+              86400000
+            ],
+            "dimension": "None",
+            "dimensionFilter": "*",
+            "dimensionFilters": [],
+            "dimensions": [
+              {
+                "$$hashKey": "object:3279",
+                "text": "None",
+                "value": "None"
+              },
+              {
+                "$$hashKey": "object:3280",
+                "text": "Listener",
+                "value": "Listener"
+              },
+              {
+                "$$hashKey": "object:3281",
+                "text": "Backend Server",
+                "value": "BackendServer"
+              },
+              {
+                "$$hashKey": "object:3282",
+                "text": "Backend Pool",
+                "value": "BackendPool"
+              },
+              {
+                "$$hashKey": "object:3283",
+                "text": "Backend Http Setting",
+                "value": "BackendHttpSetting"
+              }
+            ],
+            "metricDefinition": "Microsoft.Network/applicationGateways",
+            "metricName": "BackendFirstByteResponseTime",
+            "metricNamespace": "Microsoft.Network/applicationGateways",
+            "resourceGroup": "$ResourceGroup",
+            "resourceName": "$ResourceName",
+            "timeGrain": "auto",
+            "timeGrains": [
+              {
+                "$$hashKey": "object:3270",
+                "text": "auto",
+                "value": "auto"
+              },
+              {
+                "$$hashKey": "object:3271",
+                "text": "1 minute",
+                "value": "PT1M"
+              },
+              {
+                "$$hashKey": "object:3272",
+                "text": "5 minutes",
+                "value": "PT5M"
+              },
+              {
+                "$$hashKey": "object:3273",
+                "text": "15 minutes",
+                "value": "PT15M"
+              },
+              {
+                "$$hashKey": "object:3274",
+                "text": "30 minutes",
+                "value": "PT30M"
+              },
+              {
+                "$$hashKey": "object:3275",
+                "text": "1 hour",
+                "value": "PT1H"
+              },
+              {
+                "$$hashKey": "object:3276",
+                "text": "6 hours",
+                "value": "PT6H"
+              },
+              {
+                "$$hashKey": "object:3277",
+                "text": "12 hours",
+                "value": "PT12H"
+              },
+              {
+                "$$hashKey": "object:3278",
+                "text": "1 day",
+                "value": "P1D"
+              }
+            ],
+            "top": "10"
+          },
+          "insightsAnalytics": {
+            "query": "",
+            "resultFormat": "time_series"
+          },
+          "queryType": "Azure Monitor",
+          "refId": "D",
+          "subscription": "9208153d-b7d9-4b82-bbed-8222fc3ed00f"
+        },
+        {
+          "appInsights": {
+            "dimension": [
+              "none"
+            ],
+            "metricName": "select",
+            "rawQuery": false,
+            "rawQueryString": "",
+            "timeColumn": "timestamp",
+            "timeGrain": "auto",
+            "valueColumn": ""
+          },
+          "azureLogAnalytics": {
+            "query": "//change this example to create your own time series query\n<table name>                                                              //the table to query (e.g. Usage, Heartbeat, Perf)\n| where $__timeFilter(TimeGenerated)                                      //this is a macro used to show the full chart’s time range, choose the datetime column here\n| summarize count() by <group by column>, bin(TimeGenerated, $__interval) //change “group by column” to a column in your table, such as “Computer”. The $__interval macro is used to auto-select the time grain. Can also use 1h, 5m etc.\n| order by TimeGenerated asc",
+            "resultFormat": "time_series",
+            "workspace": "7d59ab60-d04b-43b7-8eab-8c318b8a45bb"
+          },
+          "azureMonitor": {
+            "aggOptions": [
+              "Average"
+            ],
+            "aggregation": "Average",
+            "allowedTimeGrainsMs": [
+              60000,
+              300000,
+              900000,
+              1800000,
+              3600000,
+              21600000,
+              43200000,
+              86400000
+            ],
+            "dimension": "None",
+            "dimensionFilter": "*",
+            "dimensionFilters": [],
+            "dimensions": [
+              {
+                "$$hashKey": "object:3315",
+                "text": "None",
+                "value": "None"
+              },
+              {
+                "$$hashKey": "object:3316",
+                "text": "Listener",
+                "value": "Listener"
+              },
+              {
+                "$$hashKey": "object:3317",
+                "text": "Backend Server",
+                "value": "BackendServer"
+              },
+              {
+                "$$hashKey": "object:3318",
+                "text": "Backend Pool",
+                "value": "BackendPool"
+              },
+              {
+                "$$hashKey": "object:3319",
+                "text": "Backend Http Setting",
+                "value": "BackendHttpSetting"
+              }
+            ],
+            "metricDefinition": "Microsoft.Network/applicationGateways",
+            "metricName": "BackendLastByteResponseTime",
+            "metricNamespace": "Microsoft.Network/applicationGateways",
+            "resourceGroup": "$ResourceGroup",
+            "resourceName": "$ResourceName",
+            "timeGrain": "auto",
+            "timeGrains": [
+              {
+                "$$hashKey": "object:3306",
+                "text": "auto",
+                "value": "auto"
+              },
+              {
+                "$$hashKey": "object:3307",
+                "text": "1 minute",
+                "value": "PT1M"
+              },
+              {
+                "$$hashKey": "object:3308",
+                "text": "5 minutes",
+                "value": "PT5M"
+              },
+              {
+                "$$hashKey": "object:3309",
+                "text": "15 minutes",
+                "value": "PT15M"
+              },
+              {
+                "$$hashKey": "object:3310",
+                "text": "30 minutes",
+                "value": "PT30M"
+              },
+              {
+                "$$hashKey": "object:3311",
+                "text": "1 hour",
+                "value": "PT1H"
+              },
+              {
+                "$$hashKey": "object:3312",
+                "text": "6 hours",
+                "value": "PT6H"
+              },
+              {
+                "$$hashKey": "object:3313",
+                "text": "12 hours",
+                "value": "PT12H"
+              },
+              {
+                "$$hashKey": "object:3314",
+                "text": "1 day",
+                "value": "P1D"
+              }
+            ],
+            "top": "10"
+          },
+          "insightsAnalytics": {
+            "query": "",
+            "resultFormat": "time_series"
+          },
+          "queryType": "Azure Monitor",
+          "refId": "E",
+          "subscription": "9208153d-b7d9-4b82-bbed-8222fc3ed00f"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Client RTT",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:2912",
+          "format": "ms",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:2913",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Azure Monitor",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 14
+      },
+      "hiddenSeries": false,
+      "id": 23,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": false,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.5",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "appInsights": {
+            "dimension": [
+              "none"
+            ],
+            "metricName": "select",
+            "rawQuery": false,
+            "rawQueryString": "",
+            "timeColumn": "timestamp",
+            "timeGrain": "auto",
+            "valueColumn": ""
+          },
+          "azureLogAnalytics": {
+            "query": "//change this example to create your own time series query\n<table name>                                                              //the table to query (e.g. Usage, Heartbeat, Perf)\n| where $__timeFilter(TimeGenerated)                                      //this is a macro used to show the full chart’s time range, choose the datetime column here\n| summarize count() by <group by column>, bin(TimeGenerated, $__interval) //change “group by column” to a column in your table, such as “Computer”. The $__interval macro is used to auto-select the time grain. Can also use 1h, 5m etc.\n| order by TimeGenerated asc",
+            "resultFormat": "time_series",
+            "workspace": "7d59ab60-d04b-43b7-8eab-8c318b8a45bb"
+          },
+          "azureMonitor": {
+            "aggOptions": [
+              "Total"
+            ],
+            "aggregation": "Total",
+            "alias": "{{metric}}",
+            "allowedTimeGrainsMs": [
+              60000,
+              300000,
+              900000,
+              1800000,
+              3600000,
+              21600000,
+              43200000,
+              86400000
+            ],
+            "dimension": "None",
+            "dimensionFilter": "*",
+            "dimensionFilters": [],
+            "dimensions": [
+              {
+                "text": "Listener",
+                "value": "Listener"
+              }
+            ],
+            "metricDefinition": "Microsoft.Network/applicationGateways",
+            "metricName": "BytesSent",
+            "metricNamespace": "Microsoft.Network/applicationGateways",
+            "resourceGroup": "quandopasso_development1",
+            "resourceName": "aag-quandopasso-development1",
+            "timeGrain": "auto",
+            "timeGrains": [
+              {
+                "$$hashKey": "object:1114",
+                "text": "auto",
+                "value": "auto"
+              },
+              {
+                "$$hashKey": "object:1115",
+                "text": "1 minute",
+                "value": "PT1M"
+              },
+              {
+                "$$hashKey": "object:1116",
+                "text": "5 minutes",
+                "value": "PT5M"
+              },
+              {
+                "$$hashKey": "object:1117",
+                "text": "15 minutes",
+                "value": "PT15M"
+              },
+              {
+                "$$hashKey": "object:1118",
+                "text": "30 minutes",
+                "value": "PT30M"
+              },
+              {
+                "$$hashKey": "object:1119",
+                "text": "1 hour",
+                "value": "PT1H"
+              },
+              {
+                "$$hashKey": "object:1120",
+                "text": "6 hours",
+                "value": "PT6H"
+              },
+              {
+                "$$hashKey": "object:1121",
+                "text": "12 hours",
+                "value": "PT12H"
+              },
+              {
+                "$$hashKey": "object:1122",
+                "text": "1 day",
+                "value": "P1D"
+              }
+            ],
+            "top": "10"
+          },
+          "insightsAnalytics": {
+            "query": "",
+            "resultFormat": "time_series"
+          },
+          "queryType": "Azure Monitor",
+          "refId": "A",
+          "subscription": "8a0bdc85-cc1c-4894-9acd-aedeec5a3eaa"
+        },
+        {
+          "appInsights": {
+            "dimension": [
+              "none"
+            ],
+            "metricName": "select",
+            "rawQuery": false,
+            "rawQueryString": "",
+            "timeColumn": "timestamp",
+            "timeGrain": "auto",
+            "valueColumn": ""
+          },
+          "azureLogAnalytics": {
+            "query": "//change this example to create your own time series query\n<table name>                                                              //the table to query (e.g. Usage, Heartbeat, Perf)\n| where $__timeFilter(TimeGenerated)                                      //this is a macro used to show the full chart’s time range, choose the datetime column here\n| summarize count() by <group by column>, bin(TimeGenerated, $__interval) //change “group by column” to a column in your table, such as “Computer”. The $__interval macro is used to auto-select the time grain. Can also use 1h, 5m etc.\n| order by TimeGenerated asc",
+            "resultFormat": "time_series",
+            "workspace": "7d59ab60-d04b-43b7-8eab-8c318b8a45bb"
+          },
+          "azureMonitor": {
+            "aggOptions": [
+              "Total"
+            ],
+            "aggregation": "Total",
+            "alias": "{{metric}}",
+            "allowedTimeGrainsMs": [
+              60000,
+              300000,
+              900000,
+              1800000,
+              3600000,
+              21600000,
+              43200000,
+              86400000
+            ],
+            "dimension": "None",
+            "dimensionFilter": "*",
+            "dimensionFilters": [],
+            "dimensions": [
+              {
+                "text": "Listener",
+                "value": "Listener"
+              }
+            ],
+            "metricDefinition": "Microsoft.Network/applicationGateways",
+            "metricName": "BytesReceived",
+            "metricNamespace": "Microsoft.Network/applicationGateways",
+            "resourceGroup": "quandopasso_development1",
+            "resourceName": "aag-quandopasso-development1",
+            "timeGrain": "auto",
+            "timeGrains": [
+              {
+                "$$hashKey": "object:1132",
+                "text": "auto",
+                "value": "auto"
+              },
+              {
+                "$$hashKey": "object:1133",
+                "text": "1 minute",
+                "value": "PT1M"
+              },
+              {
+                "$$hashKey": "object:1134",
+                "text": "5 minutes",
+                "value": "PT5M"
+              },
+              {
+                "$$hashKey": "object:1135",
+                "text": "15 minutes",
+                "value": "PT15M"
+              },
+              {
+                "$$hashKey": "object:1136",
+                "text": "30 minutes",
+                "value": "PT30M"
+              },
+              {
+                "$$hashKey": "object:1137",
+                "text": "1 hour",
+                "value": "PT1H"
+              },
+              {
+                "$$hashKey": "object:1138",
+                "text": "6 hours",
+                "value": "PT6H"
+              },
+              {
+                "$$hashKey": "object:1139",
+                "text": "12 hours",
+                "value": "PT12H"
+              },
+              {
+                "$$hashKey": "object:1140",
+                "text": "1 day",
+                "value": "P1D"
+              }
+            ],
+            "top": "10"
+          },
+          "insightsAnalytics": {
+            "query": "",
+            "resultFormat": "time_series"
+          },
+          "queryType": "Azure Monitor",
+          "refId": "B",
+          "subscription": "8a0bdc85-cc1c-4894-9acd-aedeec5a3eaa"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Networking Transfer",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:4434",
+          "format": "decbytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:4435",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "columns": [],
+      "datasource": "Azure Monitor",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 22
+      },
+      "id": 9,
+      "pageSize": null,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "styles": [
+        {
+          "$$hashKey": "object:651",
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "TimeGenerated",
+          "thresholds": [],
+          "type": "date",
+          "unit": "short"
+        },
+        {
+          "$$hashKey": "object:665",
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "clientIp_s",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "$$hashKey": "object:689",
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "ruleSetType_s",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "$$hashKey": "object:712",
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "hostname_s",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "$$hashKey": "object:734",
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "ruleId_s",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "$$hashKey": "object:756",
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "ruleGroup_s",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "$$hashKey": "object:778",
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "details_message_s",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "$$hashKey": "object:800",
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "action_s",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "$$hashKey": "object:856",
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "details_line_s",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "$$hashKey": "object:1215",
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "requestUri_s",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "$$hashKey": "object:1282",
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "/^.*/",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "appInsights": {
+            "dimension": [
+              "none"
+            ],
+            "metricName": "select",
+            "rawQuery": false,
+            "rawQueryString": "",
+            "timeColumn": "timestamp",
+            "timeGrain": "auto",
+            "valueColumn": ""
+          },
+          "azureLogAnalytics": {
+            "query": "AzureDiagnostics \r\n| where  ResourceProvider == \"MICROSOFT.NETWORK\" and Category == \"ApplicationGatewayFirewallLog\" and action_s == \"Blocked\"\n| where TimeGenerated >= $__timeFrom() and TimeGenerated <= $__timeTo()\n| order by TimeGenerated asc",
+            "resultFormat": "table",
+            "workspace": "98743fe4-f577-4d4f-975d-b7579cfe840e"
+          },
+          "azureMonitor": {
+            "aggOptions": [],
+            "dimensionFilter": "*",
+            "dimensionFilters": [],
+            "metricDefinition": "select",
+            "metricName": "select",
+            "metricNamespace": "select",
+            "resourceGroup": "select",
+            "resourceName": "select",
+            "timeGrain": "auto",
+            "timeGrains": [],
+            "top": "10"
+          },
+          "insightsAnalytics": {
+            "query": "",
+            "resultFormat": "time_series"
+          },
+          "queryType": "Azure Log Analytics",
+          "refId": "A",
+          "subscription": "8a0bdc85-cc1c-4894-9acd-aedeec5a3eaa"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "WAF ALL Logs",
+      "transform": "table",
+      "type": "table-old"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "Azure Monitor",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 7,
+        "x": 0,
+        "y": 32
+      },
+      "id": 11,
+      "interval": null,
+      "links": [],
+      "maxDataPoints": 1,
+      "options": {
+        "displayMode": "lcd",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {}
+      },
+      "pluginVersion": "7.5.5",
+      "targets": [
+        {
+          "appInsights": {
+            "dimension": "none",
+            "metricName": "select",
+            "rawQuery": false,
+            "rawQueryString": "",
+            "timeColumn": "timestamp",
+            "timeGrain": "auto",
+            "valueColumn": ""
+          },
+          "azureLogAnalytics": {
+            "query": "AzureDiagnostics\r\n| where ResourceProvider == \"MICROSOFT.NETWORK\" and Category == \"ApplicationGatewayFirewallLog\"\r and action_s == \"Blocked\"\n| where TimeGenerated >= $__timeFrom() and TimeGenerated <= $__timeTo()\n| summarize count() by clientIp_s, bin(TimeGenerated, $__interval)\n",
+            "resultFormat": "time_series",
+            "workspace": "08934564-b6bd-42d1-9f9f-b777176b0835"
+          },
+          "azureMonitor": {
+            "aggOptions": [],
+            "dimensionFilter": "*",
+            "metricDefinition": "select",
+            "metricName": "select",
+            "metricNamespace": "select",
+            "resourceGroup": "select",
+            "resourceName": "select",
+            "timeGrain": "auto",
+            "timeGrains": [],
+            "top": "10"
+          },
+          "queryType": "Azure Log Analytics",
+          "refId": "A",
+          "subscription": "9208153d-b7d9-4b82-bbed-8222fc3ed00f"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "WAF Block Count from IPs",
+      "type": "bargauge"
+    },
+    {
+      "aliasColors": {},
+      "breakPoint": "50%",
+      "cacheTimeout": null,
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": "Azure Monitor",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "fontSize": "80%",
+      "format": "short",
+      "gridPos": {
+        "h": 9,
+        "w": 9,
+        "x": 7,
+        "y": 32
+      },
+      "id": 13,
+      "interval": null,
+      "legend": {
+        "header": "",
+        "percentage": true,
+        "percentageDecimals": null,
+        "show": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 1,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "pluginVersion": "7.0.3",
+      "strokeWidth": "1",
+      "targets": [
+        {
+          "appInsights": {
+            "dimension": [
+              "none"
+            ],
+            "metricName": "select",
+            "rawQuery": false,
+            "rawQueryString": "",
+            "timeColumn": "timestamp",
+            "timeGrain": "auto",
+            "valueColumn": ""
+          },
+          "azureLogAnalytics": {
+            "query": "AzureDiagnostics\r\n| where ResourceProvider == \"MICROSOFT.NETWORK\" and Category == \"ApplicationGatewayFirewallLog\"\r \n| where TimeGenerated >= $__timeFrom() and TimeGenerated <= $__timeTo()\n| summarize Count=count() by details_file_s, bin(TimeGenerated, $__interval)",
+            "resultFormat": "time_series",
+            "workspace": "98743fe4-f577-4d4f-975d-b7579cfe840e"
+          },
+          "azureMonitor": {
+            "aggOptions": [],
+            "dimensionFilter": "*",
+            "dimensionFilters": [],
+            "metricDefinition": "select",
+            "metricName": "select",
+            "metricNamespace": "select",
+            "resourceGroup": "select",
+            "resourceName": "select",
+            "timeGrain": "auto",
+            "timeGrains": [],
+            "top": "10"
+          },
+          "insightsAnalytics": {
+            "query": "",
+            "resultFormat": "time_series"
+          },
+          "queryType": "Azure Log Analytics",
+          "refId": "A",
+          "subscription": "8a0bdc85-cc1c-4894-9acd-aedeec5a3eaa"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Rules Current percentage",
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "datasource": "Azure Monitor",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null,
+            "displayMode": "auto",
+            "filterable": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 16,
+        "y": 32
+      },
+      "id": 15,
+      "options": {
+        "showHeader": true
+      },
+      "pluginVersion": "7.5.5",
+      "targets": [
+        {
+          "appInsights": {
+            "dimension": [
+              "none"
+            ],
+            "metricName": "select",
+            "rawQuery": false,
+            "rawQueryString": "",
+            "timeColumn": "timestamp",
+            "timeGrain": "auto",
+            "valueColumn": ""
+          },
+          "azureLogAnalytics": {
+            "query": "AzureDiagnostics\r\n| where ResourceProvider == \"MICROSOFT.NETWORK\" and Category == \"ApplicationGatewayFirewallLog\"\r and action_s == \"Blocked\"\n| where TimeGenerated >= $__timeFrom() and TimeGenerated <= $__timeTo()\n| project TimeGenerated, clientIp_s, requestUri_s, details_file_s",
+            "resultFormat": "table",
+            "workspace": "08934564-b6bd-42d1-9f9f-b777176b0835"
+          },
+          "azureMonitor": {
+            "aggOptions": [],
+            "dimensionFilter": "*",
+            "dimensionFilters": [],
+            "metricDefinition": "select",
+            "metricName": "select",
+            "metricNamespace": "select",
+            "resourceGroup": "select",
+            "resourceName": "select",
+            "timeGrain": "auto",
+            "timeGrains": [],
+            "top": "10"
+          },
+          "insightsAnalytics": {
+            "query": "",
+            "resultFormat": "time_series"
+          },
+          "queryType": "Azure Log Analytics",
+          "refId": "A",
+          "subscription": "8a0bdc85-cc1c-4894-9acd-aedeec5a3eaa"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Block List",
+      "type": "table"
+    }
+  ],
+  "refresh": "1m",
+  "schemaVersion": 27,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "Azure Monitor",
+          "value": "Azure Monitor"
+        },
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "Subscription",
+        "options": [],
+        "query": "grafana-azure-monitor-datasource",
+        "queryValue": "",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "MC_quandopasso_development_westeurope_quandopasso-development_westeurope",
+          "value": "MC_quandopasso_development_westeurope_quandopasso-development_westeurope"
+        },
+        "datasource": "$Subscription",
+        "definition": "ResourceGroups()",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "ResourceGroup",
+        "multi": false,
+        "name": "ResourceGroup",
+        "options": [],
+        "query": "ResourceGroups()",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "Microsoft.Compute/virtualMachineScaleSets",
+          "value": "Microsoft.Compute/virtualMachineScaleSets"
+        },
+        "datasource": "$Subscription",
+        "definition": "Namespaces($ResourceGroup)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "Namespace",
+        "multi": false,
+        "name": "Namespace",
+        "options": [],
+        "query": "Namespaces($ResourceGroup)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "aks-devpool01-20070033-vmss",
+          "value": "aks-devpool01-20070033-vmss"
+        },
+        "datasource": "$Subscription",
+        "definition": "ResourceNames($ResourceGroup,$Namespace)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "ResourceName",
+        "options": [],
+        "query": "ResourceNames($ResourceGroup,$Namespace)",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-3h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "Azure Applictaion Gateway",
+  "uid": "ZvOXEHgMz",
+  "version": 16
+}

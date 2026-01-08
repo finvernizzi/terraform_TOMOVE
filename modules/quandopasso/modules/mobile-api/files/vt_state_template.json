@@ -1,0 +1,30 @@
+{
+    "templates":[
+        {
+          "lang": "it",
+          "template": "Stai viaggiando ad una velocità di {{avg_speed}} km/h. La velocita massima consentita è di {{max_speed}} km/h"
+        },
+        {
+          "lang": "en",
+          "template": "You are traveling at a speed of {{avg_speed}} km/h. The maximum speed allowed is {{max_speed}} km/h"
+        },
+        {
+          "lang": "fr",
+          "template": "Vous voyagez à une vitesse de {{avg_speed}} km/h. La vitesse maximale autorisée est de {{max_speed}} km/h"
+        }
+      ],
+      "defaults": [
+        {
+            "lang": "it",
+            "__template__": "Buon viaggio"
+          },
+          {
+            "lang": "en",
+            "__template__": "Have a nice trip"
+          },
+          {
+            "lang": "fr",
+            "__template__": "Bon voyage"
+          }
+      ]
+}

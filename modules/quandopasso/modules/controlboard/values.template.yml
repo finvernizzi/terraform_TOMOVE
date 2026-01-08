@@ -1,0 +1,22 @@
+# Viasuisse values for controlboard.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+namespace: ${namespace}
+
+replicaCount: ${replicacount}
+
+domain: ${domain}
+environment: ${environment}
+base_href: ${base_href}
+
+# The backend taht will serve this controlboard
+backend: ${backend_path}
+# The wellknown url this controlboard should refer to
+well_known_url: ${well_known_url}
+
+image:
+  repository: ${repository}
+  tag: ${tag}
+  pullPolicy: ${pullPolicy}
+  pullSecretName: ${azcr_pullimage_secret_name}

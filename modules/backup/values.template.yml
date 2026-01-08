@@ -1,0 +1,25 @@
+# Default values for backup cronjob.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+namespace: ${namespace}
+
+domain: ${domain}
+environment: ${environment}
+# The DB object of the backup
+database: ${database}
+
+# Cron schedule
+schedule: "${schedule}"
+
+image:
+  # The image of the base system 
+  alpine_repository: quandopassoprod.azurecr.io/alpine
+  alpine_tag: 0.0.5
+  tag: ${tag}
+  pullSecretName: ${azcr_pullimage_secret_name}
+
+backupSecretName: ${secretName}
+backupHost: ${backupHost}
+
+mail_to: ${mailTo}

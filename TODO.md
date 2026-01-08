@@ -1,0 +1,6 @@
+- [DONE]  nome di aks-net deve includere environemnt per semplificare identificazione
+- creare user e pass con privilegi inferiori su psql
+- capire se ha un senso creare automaticamente peering tra askvnet e commonvnet per accesso da OpenVPN
+- capire se è indispensabile utilizzare DNS private resolver (costoso)
+- Monitoring nginx
+- creazione dei DB in fase di creazione del psql server
