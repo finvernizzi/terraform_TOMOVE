@@ -21,7 +21,7 @@ variable "master_ip" {
 variable "worker_ips" {
   description = "List of IPs or hostnames for worker nodes"
   type        = list(string)
-  default = [ "100.115.34.126" ]
+  default = [ ]
 }
 
 # --- PSQL server ---
@@ -319,7 +319,8 @@ variable "quandopasso_services" {
               namespace     = "quandopasso"
               replicacount  = 1
               mixer_config  = "/files/mixer_config.json"
-              helm_package_version       = "0.3.13"
+              # helm_package_version       = "0.3.13"
+              helm_package_version       = "0.3.6-tomove"
               tag                        = "2.5.10-actions"
             }
           ]

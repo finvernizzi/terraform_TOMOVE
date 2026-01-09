@@ -2,6 +2,10 @@ variable "chart_version" {
   description = "rabbitmq quandopasso helm chart version"
   type = string
 }
+variable "helm_repository" {
+  description = "---AGGIUNTO per test accesso a storage invece che su github---. Helm repository for rabbitmq chart"
+  type = string
+}
 variable "domain" {
   description = "domain - NO LONGER IN REAL USE!"
   type = string

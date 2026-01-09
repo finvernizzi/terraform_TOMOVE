@@ -27,19 +27,22 @@ provider "null" {}
 
 provider "helm" {
   kubernetes = {
-    config_path      =  "${path.root}/.kubeconfig"
+    # config_path      =  "${path.root}/.kubeconfig"
+    config_path        = "/home/qp/.kube/config"
     load_config_file = true
     insecure         = true
   }
 }
 
 provider "kubectl" {
-  config_path      = "${path.root}/.kubeconfig"
+  # config_path      = "${path.root}/.kubeconfig"
+  config_path        = "/home/qp/.kube/config"
   load_config_file = true
   insecure         = true // To use ssh tunnel
 }
 
 provider "kubernetes" {
-  host        = "https://127.0.0.1:6443"
-  config_path = "${path.root}/.kubeconfig"
+  host        = "https://192.168.10.105:6443"
+  # config_path = "${path.root}/.kubeconfig"
+  config_path        = "/home/qp/.kube/config"
 }

@@ -11,16 +11,16 @@ locals {
     user                  = jsondecode(file("${path.module}/vault/helm_repository.json")).user 
     password              = jsondecode(file("${path.module}/vault/helm_repository.json")).password 
   }
-  smtp = {
-      smtp_server         = jsondecode(file("${path.module}/vault/smtp.json")).smtp_server
-      smtp_username       = jsondecode(file("${path.module}/vault/smtp.json")).smtp_username
-      smtp_password       = jsondecode(file("${path.module}/vault/smtp.json")).smtp_password
-  }
-  backup = {
-    id_rsa                = file("${path.module}/vault/id_rsa")
-    known_hosts           = file("${path.module}/vault/known_hosts")
-    mail_key              = jsondecode(file("${path.module}/vault/smtp.json")).mail_key
-  }
+  # smtp = {
+  #     smtp_server         = jsondecode(file("${path.module}/vault/smtp.json")).smtp_server
+  #     smtp_username       = jsondecode(file("${path.module}/vault/smtp.json")).smtp_username
+  #     smtp_password       = jsondecode(file("${path.module}/vault/smtp.json")).smtp_password
+  # }
+  # backup = {
+  #   id_rsa                = file("${path.module}/vault/id_rsa")
+  #   known_hosts           = file("${path.module}/vault/known_hosts")
+  #   mail_key              = jsondecode(file("${path.module}/vault/smtp.json")).mail_key
+  # }
   mixer_config            = file("${path.module}/files/mixer_config.json")
   database = {
     host                  = jsondecode(file("${path.module}/vault/database.json")).host
@@ -41,26 +41,26 @@ locals {
 #   worker_ips            = var.worker_ips
 # }
 
-resource "null_resource" "k8s_ssh_tunnel" {
-  triggers = {
-    master_ip = var.master_ip
-  }
+# resource "null_resource" "k8s_ssh_tunnel" {
+#   triggers = {
+#     master_ip = var.master_ip
+#   }
 
-  provisioner "local-exec" {
-    command = <<-EOT
-      # Kill old tunnels
-      pkill -f "ssh -N -L 6443:${var.master_ip}:6443" || true
+#   provisioner "local-exec" {
+#     command = <<-EOT
+#       # Kill old tunnels
+#       pkill -f "ssh -N -L 6443:${var.master_ip}:6443" || true
 
-      # Start tunnel in background, no TTY (-fN)
-      ssh -o StrictHostKeyChecking=no \
-          -i ${var.ssh_private_key_path} \
-          -fN -L 6443:${var.master_ip}:6443 \
-          ${var.ssh_user}@${var.master_ip}
-    EOT
-  }
+#       # Start tunnel in background, no TTY (-fN)
+#       ssh -o StrictHostKeyChecking=no \
+#           -i ${var.ssh_private_key_path} \
+#           -fN -L 6443:${var.master_ip}:6443 \
+#           ${var.ssh_user}@${var.master_ip}
+#     EOT
+#   }
 
   // depends_on = [module.k8s_ssh_cluster]
-}
+# }
 
 /**
 * Azure resources (e.g. resource groups)@
@@ -140,26 +140,26 @@ module "k8s" {
   tags                    = local.tags
   observability_namespace = var.observability_namespace
   // The resource_group MUST be created before we create the k8s cluster
-  depends_on = [null_resource.k8s_ssh_tunnel]
+  // depends_on = [null_resource.k8s_ssh_tunnel]
 }
 
 # The psql server
-module "postgres" {
-  source = "../modules/postgres"
+# module "postgres" {
+#   source = "../modules/postgres"
 
-  host                = var.postgres_host          # or hard-coded IP
-  ssh_user            = var.ssh_user               # e.g. "root"
-  ssh_private_key_path = var.ssh_private_key_path  # e.g. "~/.ssh/id_rsa"
+#   host                = var.postgres_host          # or hard-coded IP
+#   ssh_user            = var.ssh_user               # e.g. "root"
+#   ssh_private_key_path = var.ssh_private_key_path  # e.g. "~/.ssh/id_rsa"
 
-  postgres_db_name    = "quandopasso"
-  postgres_user       = "psqladmin"
+#   postgres_db_name    = "quandopasso"
+#   postgres_user       = "psqladmin"
 
-  backup_namespace    = var.backup_namespace
-  environment         = var.environment 
+#   backup_namespace    = var.backup_namespace
+#   environment         = var.environment 
 
-  namespaces          = var.psql_namespaces 
-  depends_on = [null_resource.k8s_ssh_tunnel, module.k8s]
-}
+#   namespaces          = var.psql_namespaces 
+#   depends_on = [ module.k8s]
+# }
 
 
 module "nginx_ingress" {
@@ -197,34 +197,35 @@ module "ingress_rules" {
 # /**
 # * Prometheus, grafana
 # */
-# module "observability" {
-#   source                  = "../modules/observability"
-#   // This is the namespace where services are run. It is mainly for pushGateway
-#   namespace               = var.observability_namespace
-#   // helm_repository         = local.helm_repo.repository
-#   helm_repository         = var.helm_repository
-#   helm_user               = local.helm_repo.user
-#   helm_password           = local.helm_repo.password
-#   main_url                = "${var.host_name}.${var.dns_zone}"
-#   grafana_path            = var.grafana_path
-#   # Email alerting
-#   enable_alert_mail       = false
-#   smtp_server             = local.smtp.smtp_server
-#   smtp_username           = local.smtp.smtp_username
-#   smtp_password           = local.smtp.smtp_password
-#   domains                 = var.observability.domains
-#   depends_on = [null_resource.k8s_ssh_tunnel, module.k8s]
-#}
+module "observability" {
+  source                  = "../modules/observability"
+  // This is the namespace where services are run. It is mainly for pushGateway
+  namespace               = var.observability_namespace
+  // helm_repository         = local.helm_repo.repository
+  helm_repository         = var.helm_repository
+  helm_user               = local.helm_repo.user
+  helm_password           = local.helm_repo.password
+  main_url                = "${var.host_name}.${var.dns_zone}"
+  grafana_path            = var.grafana_path
+  # Email alerting
+  enable_alert_mail       = false
+  smtp_server             = "no_server"
+  smtp_username           = "no_username"
+  smtp_password           = "no_smtp_password"
+  domains                 = var.observability.domains
+  depends_on = [ module.k8s]
+}
 
 /**
 * RABBITMQ
 */ 
 module "rabbitmq" {
   source                  = "../modules/rabbitmq"
-  depends_on = [null_resource.k8s_ssh_tunnel, module.k8s]
+  // depends_on = [null_resource.k8s_ssh_tunnel, module.k8s]
+  depends_on = [ module.k8s]
 
   // Quandopasso chart version
-  chart_version           = "0.1.14"
+  chart_version           = "0.1.14-tomove"
   domain                  = var.domain
   namespace               = var.common_namespace
   environment             = var.environment
@@ -233,6 +234,7 @@ module "rabbitmq" {
   # Prometheus 
   service_monitor_release = "observability"
   rabbitmq_vhosts         = var.rabbitmq_vhosts
+  helm_repository             = var.helm_repository
 }
 # /**
 # * QUANDOPASSO
@@ -262,7 +264,7 @@ module "quandopasso" {
   fcd_db_name                 = local.database.fcd_db_name
   #depends_on = [null_resource.k8s_ssh_tunnel, module.rabbitmq, module.k8s /*, module.observability*/]
 
-  depends_on = [null_resource.k8s_ssh_tunnel, module.rabbitmq, module.k8s]
+  depends_on = [ module.rabbitmq]
 }
 
 /**

@@ -41,19 +41,19 @@ module "mobile-api" {
 /**
 * Utilizzo la URL per psql, quindi db, user, pass non sono significativi
 */
-module "fcd-api" {
-  source                      = "./modules/fcd-api"
-  azcr_pullimage_secret_name  = var.azcr_prod_pullimage_secret_name
-  repository                  = "${var.azcr_prod_host}/fcd-api"
-  helm_repository             = var.helm_repository
-  service_monitor_release     = var.service_monitor_release
-  istances                    = var.quandopasso_services.fcd-api.istances
-  db_host                     = var.db_host
-  db_user                     = var.db_user
-  db_pass                     = var.db_password
-  db_name                     = var.fcd_db_name
-  # depends_on                  = [ module.cache ]
-}
+# module "fcd-api" {
+#   source                      = "./modules/fcd-api"
+#   azcr_pullimage_secret_name  = var.azcr_prod_pullimage_secret_name
+#   repository                  = "${var.azcr_prod_host}/fcd-api"
+#   helm_repository             = var.helm_repository
+#   service_monitor_release     = var.service_monitor_release
+#   istances                    = var.quandopasso_services.fcd-api.istances
+#   db_host                     = var.db_host
+#   db_user                     = var.db_user
+#   db_pass                     = var.db_password
+#   db_name                     = var.fcd_db_name
+#   # depends_on                  = [ module.cache ]
+# }
 
 module "cb-api" {
   source                      = "./modules/cb-api"
@@ -147,7 +147,7 @@ module "controlboard" {
 // }
 
 // Tenants persistance managers
-module "persistance" {
+/* module "persistance" {
   source                      = "./modules/persistance"
   # --- LE VARIABILI GLOBALI non per istance del DB sono da ELIMINARE ----
   # --- 24.06.2023 ---
@@ -165,4 +165,4 @@ module "persistance" {
   # --- 24.06.2023 --- se non ha dato problemi eliminare
   // namespaces                  = var.quandopasso_services.persistance.namespaces
   // depends_on                  = [ module.persistance-db]
-}
+} */

@@ -41,7 +41,8 @@ resource "random_password" "users_pass" {
 resource "helm_release" "rabbitmq" {
   name       = "rabbit"
 
-  repository = "https://9a75302080758cac2cf574cdb56ed67bade16784@raw.githubusercontent.com/finvernizzi/charts/terraform/packages"
+  // repository = "https://9a75302080758cac2cf574cdb56ed67bade16784@raw.githubusercontent.com/finvernizzi/charts/terraform/packages"
+  repository        = var.helm_repository
   chart      = "rabbitmq"
   version    = var.chart_version
   create_namespace = true
