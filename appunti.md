@@ -3,7 +3,7 @@
 SSH tunnel iomtegrato nel terraform per accedere al cluster AKS privato.
 OSS: non copia automaticamente kubeconfig, quindi se si inizializa copiarlo dal cluster remoto nella cartella principoale (tomove)
 
-## Polrta 8080
+## Porta 8080
 
 Utilizzo nodeport cu igress controller
 
@@ -37,6 +37,9 @@ sudo crictl ps
 sudo crictl ps -a | egrep 'etcd|kube-apiserver|kube-controller|kube-scheduler'
 sudo ss -lntp | egrep '2379|6443' || true
 
+
+> k9s 
+> Utile per monitorare lo stato del cluster in tempo reale
 
 ### LOGS
 
