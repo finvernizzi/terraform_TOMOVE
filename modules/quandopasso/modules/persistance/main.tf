@@ -37,7 +37,7 @@ resource "helm_release" "vsign-persistance" {
   repository        = var.helm_repository
   chart             = "vsign-persistence"
   version           = var.istances[count.index]["helm_package_version"]
-  timeout           = 1200
+  timeout           = 3600 # 1 hour
   wait_for_jobs     = true
 
   cleanup_on_fail   = true

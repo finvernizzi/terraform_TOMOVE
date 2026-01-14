@@ -12,6 +12,17 @@ resource "helm_release" "ingress_controller" {
   atomic 		= true
   timeout		= 3600
   
+  set = [
+    {
+      name  = "controller.config.enable-access-log"
+      value = "true"
+    },
+    {
+      name  = "controller.extraArgs.v"
+      value = "2"
+    }
+  ]
+
   values               = [ 
     templatefile(
       "${path.module}/ingress_controller.template.yml",

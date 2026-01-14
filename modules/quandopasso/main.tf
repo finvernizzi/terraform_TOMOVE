@@ -147,7 +147,7 @@ module "controlboard" {
 // }
 
 // Tenants persistance managers
-/* module "persistance" {
+module "persistance" {
   source                      = "./modules/persistance"
   # --- LE VARIABILI GLOBALI non per istance del DB sono da ELIMINARE ----
   # --- 24.06.2023 ---
@@ -162,7 +162,4 @@ module "controlboard" {
   repository                  = "${var.azcr_prod_host}/vsign-persistence"
   helm_repository             = var.helm_repository
   istances                    = var.quandopasso_services.persistance.istances
-  # --- 24.06.2023 --- se non ha dato problemi eliminare
-  // namespaces                  = var.quandopasso_services.persistance.namespaces
-  // depends_on                  = [ module.persistance-db]
-} */
+} 

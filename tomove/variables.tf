@@ -206,7 +206,7 @@ variable "dns_zone" {
 */
 variable "host_name" {
   description     = "Host where the services are served. E.G. test"
-  default         = "service"
+  default         = "edge"
 }
 variable "dns_zone_resource_group_name"{
   description = "The resource group where the DNS zone is registered"
@@ -289,11 +289,18 @@ variable vanity_domains {
   default          = [
     {
       domain           = "quandopasso"
-      name             = "qp"
-      fqdn             = "qp.quandopasso.it"
+      name             = "tomove"
+      fqdn             = "tomove.quandopasso.it"
       namespace        = "quandopasso"
       cert_issuer      = "prod"
     }
+    # {
+    #   domain           = "quandopasso"
+    #   name             = "edge"
+    #   fqdn             = "edge.tomove.nextgcloud.com"
+    #   namespace        = "quandopasso"
+    #   cert_issuer      = "prod"
+    # }
   ]
 }
 
@@ -338,14 +345,14 @@ variable "quandopasso_services" {
               exchange                    = "quandopasso"
               queue_vhost                 = "quandopasso"
               debug                       = ""
-              helm_package_version        = "0.6.3"
+              helm_package_version        = "0.6.4"
               tag                         = "0.5.12"
               db_synch                    = true
               db_options                  = "{ssl: rejectUnauthorized:false}"
-              db_host                     = "172.17.0.5"
-              db_name                     = "quandopasso"
-              db_user                     = "fabrizio"
-              db_pass                     = "V1s0@lalcap6l"
+              db_host                     = "100.115.34.126"
+              db_name                     = "tomove"
+              db_user                     = "postgres"
+              db_pass                     = "lasasn6n"
               db_ssl_mode                 = "no-verify"
             }
         ]
@@ -355,7 +362,8 @@ variable "quandopasso_services" {
           {
               name                       = "quandopasso"
               helm_package_version       = "0.3.11-beta2"
-              tag                        = "5.4.1-beta8"
+              # tag                        = "5.4.1-beta8"
+              tag                        = "5.5.0-beta0"
               replicacount               = 1
               domain                     = "quandopasso"
               namespace                  = "quandopasso"

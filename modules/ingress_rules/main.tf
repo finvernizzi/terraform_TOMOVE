@@ -62,7 +62,6 @@ resource "kubernetes_ingress_v1" "mobile-api" {
     annotations = {
       "kubernetes.io/ingress.class" = var.ingress_type == "nginx" ? "nginx" : "azure/application-gateway"
       "nginx.org/mergeable-ingress-type" = "master"
-      "cert-manager.io/cluster-issuer" = "letsencrypt-${var.cert_issuer}"
       "nginx.ingress.kubernetes.io/ssl-redirect" = "false"
       "nginx.ingress.kubernetes.io/rewrite-target" = "/$1"
     }
@@ -92,74 +91,73 @@ resource "kubernetes_ingress_v1" "mobile-api" {
   }
 }
 
-resource "kubernetes_ingress_v1" "terminals-api" {
-  metadata {
-    name = "terminals-api"
-    namespace = var.namespace
-    annotations = {
-      "kubernetes.io/ingress.class" = var.ingress_type == "nginx" ? "nginx" : "azure/application-gateway"
-      "nginx.org/mergeable-ingress-type" = "master"
-      # "cert-manager.io/cluster-issuer" = "letsencrypt-${var.cert_issuer}"
-      "nginx.ingress.kubernetes.io/ssl-redirect" = "false"
-      "nginx.ingress.kubernetes.io/rewrite-target" = "/$1"
-    }
-    labels = var.labels
-  }
-  spec {
-    rule {
-      host          = "${var.host}"
-      http {
-        path {
-          backend {
-            service {
-              name = "terminals-api"
-              port {
-                number = 80
-              }
-            }
-          }
-          path = "/terminals/(.*)$"
-        }
-      }
-    }
-  }
-}
-resource "kubernetes_ingress_v1" "wellknown-api" {
-  metadata {
-    name = "wellknown-api"
-    namespace = var.namespace
-    annotations = {
-      "kubernetes.io/ingress.class" = var.ingress_type == "nginx" ? "nginx" : "azure/application-gateway"
-      "nginx.org/mergeable-ingress-type" = "master"
-      "cert-manager.io/cluster-issuer" = "letsencrypt-${var.cert_issuer}"
-      "nginx.ingress.kubernetes.io/ssl-redirect" = "false"
-      "nginx.ingress.kubernetes.io/rewrite-target" = "/$1"
-    }
-    labels = var.labels
-  }
-  spec {
-    # tls {
-    #   secret_name  = "tls-secret-${var.environment}-${var.domain}"
-    #   hosts        = ["${var.host}"]
-    # }
-    rule {
-      host          = "${var.host}"
-      http {
-        path {
-          backend {
-            service {
-              name = "wellknown-api"
-              port {
-                number = 80
-              }
-            }
-          }
-          path = "/wellknown/(.*)$"
-        }
-      }
-    }
-  }
-}
+# resource "kubernetes_ingress_v1" "terminals-api" {
+#   metadata {
+#     name = "terminals-api"
+#     namespace = var.namespace
+#     annotations = {
+#       "kubernetes.io/ingress.class" = var.ingress_type == "nginx" ? "nginx" : "azure/application-gateway"
+#       "nginx.org/mergeable-ingress-type" = "master"
+#       # "cert-manager.io/cluster-issuer" = "letsencrypt-${var.cert_issuer}"
+#       "nginx.ingress.kubernetes.io/ssl-redirect" = "false"
+#       "nginx.ingress.kubernetes.io/rewrite-target" = "/$1"
+#     }
+#     labels = var.labels
+#   }
+#   spec {
+#     rule {
+#       host          = "${var.host}"
+#       http {
+#         path {
+#           backend {
+#             service {
+#               name = "terminals-api"
+#               port {
+#                 number = 80
+#               }
+#             }
+#           }
+#           path = "/terminals/(.*)$"
+#         }
+#       }
+#     }
+#   }
+# }
+# resource "kubernetes_ingress_v1" "wellknown-api" {
+#   metadata {
+#     name = "wellknown-api"
+#     namespace = var.namespace
+#     annotations = {
+#       "kubernetes.io/ingress.class" = var.ingress_type == "nginx" ? "nginx" : "azure/application-gateway"
+#       "nginx.org/mergeable-ingress-type" = "master"
+#       "nginx.ingress.kubernetes.io/ssl-redirect" = "false"
+#       "nginx.ingress.kubernetes.io/rewrite-target" = "/$1"
+#     }
+#     labels = var.labels
+#   }
+#   spec {
+#     # tls {
+#     #   secret_name  = "tls-secret-${var.environment}-${var.domain}"
+#     #   hosts        = ["${var.host}"]
+#     # }
+#     rule {
+#       host          = "${var.host}"
+#       http {
+#         path {
+#           backend {
+#             service {
+#               name = "wellknown-api"
+#               port {
+#                 number = 80
+#               }
+#             }
+#           }
+#           path = "/wellknown/(.*)$"
+#         }
+#       }
+#     }
+#   }
+# }
 resource "kubernetes_ingress_v1" "observability" {
   metadata {
     name = "observability"
@@ -167,7 +165,6 @@ resource "kubernetes_ingress_v1" "observability" {
     annotations = {
       "kubernetes.io/ingress.class" = var.ingress_type == "nginx" ? "nginx" : "azure/application-gateway"
       "nginx.org/mergeable-ingress-type" = "master"
-      "cert-manager.io/cluster-issuer" = "letsencrypt-${var.cert_issuer}"
       "nginx.ingress.kubernetes.io/ssl-redirect" = "false"
       "nginx.ingress.kubernetes.io/rewrite-target" = "/$1"
     }
@@ -209,7 +206,6 @@ resource "kubernetes_ingress_v1" "observability-vanityurls" {
     annotations = {
       "kubernetes.io/ingress.class" = var.ingress_type == "nginx" ? "nginx" : "azure/application-gateway"
       "nginx.org/mergeable-ingress-type" = "master"
-      "cert-manager.io/cluster-issuer" = "letsencrypt-${var.cert_issuer}"
       "nginx.ingress.kubernetes.io/ssl-redirect" = "false"
       "nginx.ingress.kubernetes.io/rewrite-target" = "/$1"
     }
@@ -247,7 +243,6 @@ resource "kubernetes_ingress_v1" "controlboard-vanityurls" {
     annotations = {
       "kubernetes.io/ingress.class" = var.ingress_type == "nginx" ? "nginx" : "azure/application-gateway"
       "nginx.org/mergeable-ingress-type" = "master"
-      "cert-manager.io/cluster-issuer" = "letsencrypt-${var.vanity_domains[count.index]["cert_issuer"]}"
       "nginx.ingress.kubernetes.io/ssl-redirect" = "false"
       "nginx.ingress.kubernetes.io/rewrite-target" = "/$1"
     }
@@ -317,7 +312,6 @@ resource "kubernetes_ingress_v1" "controlboard" {
     annotations = {
       "kubernetes.io/ingress.class" = var.ingress_type == "nginx" ? "nginx" : "azure/application-gateway"
       "nginx.org/mergeable-ingress-type" = "master"
-      "cert-manager.io/cluster-issuer" = "letsencrypt-${var.controlboard_istances[count.index]["cert_issuer"]}"
       "nginx.ingress.kubernetes.io/ssl-redirect" = "false"
       "nginx.ingress.kubernetes.io/rewrite-target" = "/$1"
     }
@@ -355,7 +349,6 @@ resource "kubernetes_ingress_v1" "controlboard-api" {
     annotations = {
       "kubernetes.io/ingress.class" = var.ingress_type == "nginx" ? "nginx" : "azure/application-gateway"
       "nginx.org/mergeable-ingress-type" = "master"
-      "cert-manager.io/cluster-issuer" = "letsencrypt-${var.controlboard_istances[count.index]["cert_issuer"]}"
       "nginx.ingress.kubernetes.io/ssl-redirect" = "false"
       "nginx.ingress.kubernetes.io/rewrite-target" = "/$1"
     }
@@ -430,38 +423,37 @@ resource "kubernetes_ingress_v1" "controlboard-api" {
 * Floating Car Data Ingresses
 * 
 **/
-resource "kubernetes_ingress_v1" "fcd-api" {
-  count             = length(var.fcd_api_istances)
-  metadata {
-    name = "fcd-api-${var.fcd_api_istances[count.index]["domain"]}"
-    namespace = var.fcd_api_istances[count.index]["namespace"]
-    annotations = {
-      "kubernetes.io/ingress.class" = var.ingress_type == "nginx" ? "nginx" : "azure/application-gateway"
-      "cert-manager.io/cluster-issuer" = "letsencrypt-${var.fcd_api_istances[count.index]["cert_issuer"]}"
-      "nginx.ingress.kubernetes.io/ssl-redirect" = "false"
-      "nginx.ingress.kubernetes.io/rewrite-target" = "/$1"
-    }
-    labels = var.labels
-  }
-  spec {
-    # tls {
-    #   hosts        = ["${var.host}"]
-    # }
-    rule {
-      host          = "${var.host}"
-      http {
-        path {
-          backend {
-            service {
-              name = "fcd-api-${var.fcd_api_istances[count.index]["domain"]}"
-              port {
-                number = 80
-              }
-            }
-          }
-          path = "/${var.fcd_api_istances[count.index]["domain"]}/fcd/(.*)$"
-        }
-      }
-    }
-  }
-}
+# resource "kubernetes_ingress_v1" "fcd-api" {
+#   count             = length(var.fcd_api_istances)
+#   metadata {
+#     name = "fcd-api-${var.fcd_api_istances[count.index]["domain"]}"
+#     namespace = var.fcd_api_istances[count.index]["namespace"]
+#     annotations = {
+#       "kubernetes.io/ingress.class" = var.ingress_type == "nginx" ? "nginx" : "azure/application-gateway"
+#       "nginx.ingress.kubernetes.io/ssl-redirect" = "false"
+#       "nginx.ingress.kubernetes.io/rewrite-target" = "/$1"
+#     }
+#     labels = var.labels
+#   }
+#   spec {
+#     # tls {
+#     #   hosts        = ["${var.host}"]
+#     # }
+#     rule {
+#       host          = "${var.host}"
+#       http {
+#         path {
+#           backend {
+#             service {
+#               name = "fcd-api-${var.fcd_api_istances[count.index]["domain"]}"
+#               port {
+#                 number = 80
+#               }
+#             }
+#           }
+#           path = "/${var.fcd_api_istances[count.index]["domain"]}/fcd/(.*)$"
+#         }
+#       }
+#     }
+#   }
+# }
